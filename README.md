@@ -1,0 +1,2 @@
+# pitch
+Static Site Generator
