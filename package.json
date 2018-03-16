@@ -1,0 +1,25 @@
+{
+  "name": "pitch",
+  "version": "0.0.1",
+  "description": "Static Site Generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sirikon/pitch.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sirikon/pitch/issues"
+  },
+  "homepage": "https://github.com/Sirikon/pitch#readme",
+  "devDependencies": {
+    "mocha": "^5.0.4"
+  },
+  "bin": {
+    "pitch": "bin/pitch.js"
+  }
+}
