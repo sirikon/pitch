@@ -1,5 +1,5 @@
 {
-  "name": "pitch",
+  "name": "pitch-cli",
   "version": "0.0.1",
   "description": "Static Site Generator",
   "main": "index.js",
