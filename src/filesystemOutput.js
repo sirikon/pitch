@@ -7,7 +7,7 @@ function ensureFolderExists(folderPath) {
     }
 }
 
-function run(srcDir, distDir, executionPlan) {
+function filesystemOutput(srcDir, distDir, executionPlan) {
     executionPlan.forEach(step => {
         if (step.process === null) {
             var srcPath = path.join(srcDir, step.in);
@@ -20,4 +20,4 @@ function run(srcDir, distDir, executionPlan) {
     });
 }
 
-module.exports = { run }
+module.exports = { filesystemOutput }
