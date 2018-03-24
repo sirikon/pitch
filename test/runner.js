@@ -37,6 +37,17 @@ describe('Runner', function() {
             'style.css': { in: 'style.css', process: null, out: 'style.css' }
         });
     });
+    it('should map correctly multiple files, multiple times, with deep files', function() {
+        var runner = new Runner();
+        runner.in(['index.html', 'style.css']);
+        runner.in(['index.html', 'assets/manifest.json']);
+        runner.in(['style.css']);
+        assert.deepEqual(runner.fileOutputIndex, {
+            'index.html': { in: 'index.html', process: null, out: 'index.html' },
+            'style.css': { in: 'style.css', process: null, out: 'style.css' },
+            'assets/manifest.json': { in: 'assets/manifest.json', process: null, out: 'assets/manifest.json' }
+        });
+    });
     it('should be able to remove an existing file', function() {
         var runner = new Runner();
         runner.in(['index.html', 'style.css']);
@@ -47,9 +58,10 @@ describe('Runner', function() {
     });
     it('should be able to use processors', function() {
         var runner = new Runner(processors);
-        runner.in(['style.scss']);
+        runner.in(['style.scss', 'deep/main.scss']);
         assert.deepEqual(runner.fileOutputIndex, {
-            'style.css': { in: 'style.scss', process: 'sass', out: 'style.css' }
+            'style.css': { in: 'style.scss', process: 'sass', out: 'style.css' },
+            'deep/main.css': { in: 'deep/main.scss', process: 'sass', out: 'deep/main.css' }
         });
     });
     it('should be able to remove processed files', function() {

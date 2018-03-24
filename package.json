@@ -21,5 +21,8 @@
   },
   "bin": {
     "pitch": "bin/pitch.js"
+  },
+  "dependencies": {
+    "node-sass": "^4.8.3"
   }
 }

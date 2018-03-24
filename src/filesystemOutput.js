@@ -7,16 +7,14 @@ function ensureFolderExists(folderPath) {
     }
 }
 
-function filesystemOutput(srcDir, distDir, executionPlan) {
+function filesystemOutput(distDir, runner) {
+    ensureFolderExists(distDir);
+    var executionPlan = Object.keys(runner.fileOutputIndex).map(k => runner.fileOutputIndex[k]);
     executionPlan.forEach(step => {
-        if (step.process === null) {
-            var srcPath = path.join(srcDir, step.in);
-            var distPath = path.join(distDir, step.out);
-            ensureFolderExists(path.dirname(distPath));
-            var readStream = fs.createReadStream(path.join(srcDir, step.in));
-            var writeStream = fs.createWriteStream(path.join(distDir, step.out));
-            readStream.pipe(writeStream)
-        }
+        var distPath = path.join(distDir, step.out);
+        ensureFolderExists(path.dirname(distPath));
+        var writeStream = fs.createWriteStream(path.join(distDir, step.out));
+        runner.process(step.out).pipe(writeStream);
     });
 }
 

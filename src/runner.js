@@ -1,9 +1,3 @@
-function Runner(processors) {
-    this.processors = processors || [];
-    this.fileInputIndex = {};
-    this.fileOutputIndex = {};
-}
-
 function validateFiles(files) {
     if (files === null || files === undefined) throw new Error("No file list provided");
 }
@@ -11,6 +5,24 @@ function validateFiles(files) {
 function setFileExtension(file, extension) {
     var lastDot = file.lastIndexOf('.');
     return file.substr(0, lastDot) + '.' + extension;
+}
+
+function Runner(input, processors) {
+    this.input = input;
+    this.processors = processors || [];
+
+    this.processorsIndex = {};
+    this.fileInputIndex = {};
+    this.fileOutputIndex = {};
+
+    this.generateProcessorsIndex();
+    this.bindEvents();
+
+    this.input.run();
+}
+
+Runner.prototype.bindEvents = function() {
+    this.input.events.on('in', this.in.bind(this));
 }
 
 Runner.prototype.in = function(files) {
@@ -45,6 +57,23 @@ Runner.prototype.remove = function(files) {
         var mapping = this.fileInputIndex[file];
         delete this.fileInputIndex[mapping.in];
         delete this.fileOutputIndex[mapping.out];
+    });
+}
+
+Runner.prototype.process = function(file) {
+    var mapping = this.fileOutputIndex[file];
+    var file = this.input.read(mapping.in);
+    var processor = this.processorsIndex[mapping.process];
+    if (processor) {
+        return processor.process(file);
+    } else {
+        return file.readStream;
+    }
+}
+
+Runner.prototype.generateProcessorsIndex = function() {
+    this.processors.forEach((processor) => {
+        this.processorsIndex[processor.name] = processor;
     });
 }
 

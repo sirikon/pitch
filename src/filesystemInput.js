@@ -1,27 +1,37 @@
 const fs = require('fs');
 const path = require('path');
+const EventEmitter = require('events');
 
-function walkSync(dir, fileList) {
+function walkSync(dir, fileList, currentPath) {
     var files = fs.readdirSync(dir);
     fileList = fileList || [];
+    currentPath = currentPath || '';
     files.forEach(function(file) {
         if (fs.statSync(path.join(dir, file)).isDirectory()) {
-            fileList = walkSync(path.join(dir, file, path.sep), fileList);
+            fileList = walkSync(path.join(dir, file, path.sep), fileList, path.join(currentPath, file));
         }
         else {
-            fileList.push(file);
+            fileList.push(path.join(currentPath, file));
         }
     });
     return fileList;
 };
 
-function FilesystemInput (srcDir, runner) {
+function FilesystemInput (srcDir) {
     this.srcDir = srcDir;
-    this.runner = runner;
+    this.events = new EventEmitter();
 }
 
 FilesystemInput.prototype.run = function() {
-    this.runner.in(walkSync(this.srcDir));
+    var files = walkSync(this.srcDir);
+    this.events.emit('in', files);
+}
+
+FilesystemInput.prototype.read = function(file) {
+    return {
+        absolutePath: path.resolve(path.join(this.srcDir, file)),
+        readStream: fs.createReadStream(path.join(this.srcDir, file))
+    }
 }
 
 module.exports = { FilesystemInput };
