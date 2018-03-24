@@ -23,6 +23,7 @@ function Runner(input, processors) {
 
 Runner.prototype.bindEvents = function() {
     this.input.events.on('in', this.in.bind(this));
+    this.input.events.on('remove', this.remove.bind(this));
 }
 
 Runner.prototype.in = function(files) {
