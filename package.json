@@ -1,6 +1,6 @@
 {
   "name": "pitch-cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Static Site Generator",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,7 @@
     "pitch": "bin/pitch.js"
   },
   "dependencies": {
-    "commander": "^2.15.1",
+    "caporal": "^0.10.0",
     "node-sass": "^4.8.3"
   }
 }

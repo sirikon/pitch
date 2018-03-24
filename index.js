@@ -4,6 +4,8 @@ const { filesystemOutput } = require('./src/filesystemOutput');
 const { HttpOutput } = require('./src/httpOutput');
 const { Runner } = require('./src/runner');
 
+var version = require('./package.json').version;
+
 function buildRunner() {
     var filesystemInput = new FilesystemInput('./src');
     return new Runner(filesystemInput, [sassProcessor]);
@@ -17,4 +19,4 @@ function serve() {
     new HttpOutput(buildRunner()).run();
 }
 
-module.exports = { build, serve }
+module.exports = { build, serve, version }

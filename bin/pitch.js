@@ -1,14 +1,21 @@
 #!/usr/bin/env node
-var program = require('commander');
+var program = require('caporal');
 const pitch = require('../index');
 
 program
-    .version('0.0.1')
-    .option('build', 'Builds the static page and outputs to dist folder.')
-    .parse(process.argv);
+    .name('pitch')
+    .version(pitch.version)
 
-if (program.build) {
-    pitch.build();
-} else {
-    pitch.serve();
-}
+    .command('build')
+    .description('Builds the static page and outputs to dist folder.')
+    .action(() => {
+        pitch.build();
+    })
+
+    .command('serve')
+    .description('Serves the static page for development with live transpilation.')
+    .action(() => {
+        pitch.serve();
+    });
+
+program.parse(process.argv);
