@@ -1,3 +1,5 @@
+const { data } = require('./data');
+
 function validateFiles(files) {
     if (files === null || files === undefined) throw new Error("No file list provided");
 }
@@ -64,6 +66,7 @@ Runner.prototype.remove = function(files) {
 Runner.prototype.process = function(file) {
     var mapping = this.fileOutputIndex[file];
     var file = this.input.read(mapping.in);
+    file.data = data;
     var processor = this.processorsIndex[mapping.process];
     if (processor) {
         return processor.process(file);
