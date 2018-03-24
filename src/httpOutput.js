@@ -1,4 +1,5 @@
 const http = require('http');
+const path = require('path');
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -14,6 +15,7 @@ HttpOutput.prototype.run = function() {
         if (file === '') {
             file = 'index.html';
         }
+        file = file.replace('/', path.sep);
         this.runner.process(file).pipe(res);
     });
     

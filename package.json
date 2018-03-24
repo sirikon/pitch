@@ -23,6 +23,7 @@
     "pitch": "bin/pitch.js"
   },
   "dependencies": {
+    "commander": "^2.15.1",
     "node-sass": "^4.8.3"
   }
 }
