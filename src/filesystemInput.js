@@ -8,6 +8,7 @@ function walkSync(dir, fileList, currentPath) {
     currentPath = currentPath || '';
     files.forEach(function(file) {
         if (fs.statSync(path.join(dir, file)).isDirectory()) {
+            if (currentPath === '' && file === '_src') return;
             fileList = walkSync(path.join(dir, file, path.sep), fileList, path.join(currentPath, file));
         }
         else {
