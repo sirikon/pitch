@@ -10,10 +10,16 @@ module.exports = {
         outputExtension: 'css',
         process({ absolutePath, readStream }) {
             var stream = new Readable();
-            stream.push(sass.renderSync({
+            stream._read = function () {};
+
+            sass.render({
                 file: absolutePath
-            }).css);
-            stream.push(null);
+            }, (err, result) => {
+                if (err) throw err;
+                stream.push(result.css);
+                stream.push(null);
+            });
+            
             return stream;
         }
     }

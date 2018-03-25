@@ -10,10 +10,14 @@ module.exports = {
         },
         outputExtension: 'html',
         process({ absolutePath, readStream, data }) {
-            var template = fs.readFileSync(absolutePath, {encoding: 'utf8'});
             var stream = new Readable();
-            stream.push(ejs.render(template, { data }));
-            stream.push(null);
+
+            ejs.renderFile(absolutePath, { data }, (err, result) => {
+                if (err) throw err;
+                stream.push(result);
+                stream.push(null);
+            });
+
             return stream;
         }
     }
