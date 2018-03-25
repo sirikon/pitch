@@ -1,6 +1,9 @@
 # pitch #
 
+[![CircleCI](https://circleci.com/gh/Sirikon/pitch.svg?style=svg)](https://circleci.com/gh/Sirikon/pitch)
+![Pitch Version](https://img.shields.io/npm/v/pitch-cli.svg)
 ![Pitch Dependencies](https://david-dm.org/sirikon/pitch.svg)
+![Pitch License](https://img.shields.io/npm/l/pitch-cli.svg)
 
 ⚠️**Work in progress**⚠️
 
