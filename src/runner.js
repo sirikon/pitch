@@ -13,22 +13,34 @@ function Runner(input, processors) {
     this.input = input;
     this.processors = processors || [];
 
+    this.readyPromise = null;
+    this.readyPromiseResolver = null;
     this.processorsIndex = {};
     this.fileInputIndex = {};
     this.fileOutputIndex = {};
 
     this.generateProcessorsIndex();
+    this.setupReadyPromise();
     this.bindEvents();
 
     this.input.run();
 }
 
-Runner.prototype.bindEvents = function() {
-    this.input.events.on('in', this.in.bind(this));
-    this.input.events.on('remove', this.remove.bind(this));
+Runner.prototype.setupReadyPromise = function() {
+    this.readyPromise = new Promise((resolve) => {
+        this.readyPromiseResolver = resolve;
+    });
 }
 
-Runner.prototype.in = function(files) {
+Runner.prototype.bindEvents = function() {
+    this.input.events.on('add', this.add.bind(this));
+    this.input.events.on('remove', this.remove.bind(this));
+    this.input.events.on('ready', () => {
+        this.readyPromiseResolver();
+    });
+}
+
+Runner.prototype.add = function(files) {
     validateFiles(files);
     files.forEach((file) => {
         var mapping = {
@@ -58,8 +70,10 @@ Runner.prototype.remove = function(files) {
     validateFiles(files);
     files.forEach((file) => {
         var mapping = this.fileInputIndex[file];
+        if (this.fileOutputIndex[mapping.out].in === mapping.in) {
+            delete this.fileOutputIndex[mapping.out];
+        }
         delete this.fileInputIndex[mapping.in];
-        delete this.fileOutputIndex[mapping.out];
     });
 }
 
@@ -79,6 +93,14 @@ Runner.prototype.generateProcessorsIndex = function() {
     this.processors.forEach((processor) => {
         this.processorsIndex[processor.name] = processor;
     });
+}
+
+Runner.prototype.isReady = function() {
+    return this.readyPromise;
+}
+
+Runner.prototype.stop = function() {
+    this.input.stop();
 }
 
 module.exports = { Runner };

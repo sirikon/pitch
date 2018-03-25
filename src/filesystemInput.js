@@ -1,31 +1,41 @@
 const fs = require('fs');
 const path = require('path');
 const EventEmitter = require('events');
-
-function walkSync(dir, fileList, currentPath) {
-    var files = fs.readdirSync(dir);
-    fileList = fileList || [];
-    currentPath = currentPath || '';
-    files.forEach(function(file) {
-        if (fs.statSync(path.join(dir, file)).isDirectory()) {
-            if (currentPath === '' && file === '_src') return;
-            fileList = walkSync(path.join(dir, file, path.sep), fileList, path.join(currentPath, file));
-        }
-        else {
-            fileList.push(path.join(currentPath, file));
-        }
-    });
-    return fileList;
-};
+const chokidar = require('chokidar');
 
 function FilesystemInput (srcDir) {
     this.srcDir = srcDir;
     this.events = new EventEmitter();
+    this.watcher = null;
 }
 
 FilesystemInput.prototype.run = function() {
-    var files = walkSync(this.srcDir);
-    this.events.emit('in', files);
+    this.startWatch();
+}
+
+FilesystemInput.prototype.stop = function() {
+    this.stopWatch();
+}
+
+FilesystemInput.prototype.stopWatch = function() {
+    if (this.watcher) {
+        this.watcher.close();
+    }
+}
+
+FilesystemInput.prototype.startWatch = function() {
+    this.watcher = chokidar.watch(this.srcDir, { ignored: path.join(this.srcDir, '_src') });
+    this.watcher
+        .on('all', (event, rawPath) => {
+            filePath = path.relative(this.srcDir, rawPath);
+            switch(event) {
+                case "add": this.events.emit('add', [filePath]); break;
+                case "unlink": this.events.emit('remove', [filePath]); break;
+            }
+        })
+        .on('ready', () => {
+            this.events.emit('ready');
+        });
 }
 
 FilesystemInput.prototype.read = function(file) {
