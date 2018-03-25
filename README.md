@@ -1,9 +1,18 @@
 # pitch #
+
+![Pitch Dependencies](https://david-dm.org/sirikon/pitch.svg)
+
 ⚠️**Work in progress**⚠️
 
 Zero-Configuration Convention-Driven Progressive Static Site Generator.
 
 The objetive of pitch is to provide a tool capable of building static websites without any configuration. Just a `src` folder should be enough to build a static website.
+
+## Install ##
+
+```bash
+npm install -g pitch-cli
+```
 
 ## Usage ##
 
