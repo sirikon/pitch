@@ -11,6 +11,7 @@ module.exports = {
         outputExtension: 'html',
         process({ absolutePath, readStream, data }) {
             var stream = new Readable();
+            stream._read = function () {};
 
             ejs.renderFile(absolutePath, { data }, (err, result) => {
                 if (err) throw err;
