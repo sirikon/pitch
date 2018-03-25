@@ -1,41 +1,35 @@
 const fs = require('fs');
 const path = require('path');
+const { filenameWithoutExtension } = require('./utils');
 
-const dataDir = './data';
-var dataPathSymbol = Symbol('Data Path');
+const DATA_DIR = './data';
+const DATAPATH_SYMBOL = Symbol('Data Path');
 
 function getDirectoryFiles(directoryPath) {
     return fs.readdirSync(directoryPath);
 }
 
 function getMatchingFileInDirectory(name, directory) {
-    var filesInDirectory = getDirectoryFiles(directory);
-    var found = null;
-    filesInDirectory.forEach((file) => {
-        var lastDot = file.lastIndexOf('.');
-        var fileName = null;
-        if (lastDot > 0) {
-            fileName = file.substr(0, lastDot);
-        } else {
-            fileName = file;
-        }
-        if (fileName === name) {
-            found = file;
-        }
-    });
-    return found;
+    var matchingFiles = getDirectoryFiles(directory)
+        .filter(f => filenameWithoutExtension(f) === name);
+    
+    if (matchingFiles.length > 0) {
+        return matchingFiles[0];
+    }
+
+    return null;
 }
 
 function createDataProxy(dataPath) {
-    return new Proxy({[dataPathSymbol]: dataPath || []}, {
+    return new Proxy({[DATAPATH_SYMBOL]: dataPath || []}, {
         has: () => true,
         get(target, prop) {
             if (typeof prop === 'string') {
                 
-                var filePath = path.join.apply(null, [dataDir].concat(target[dataPathSymbol], [prop]));
+                var filePath = path.join.apply(null, [DATA_DIR].concat(target[DATAPATH_SYMBOL], [prop]));
 
                 if(fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
-                    return createDataProxy(target[dataPathSymbol].concat(prop));
+                    return createDataProxy(target[DATAPATH_SYMBOL].concat(prop));
                 } else {
                     var directory = path.dirname(filePath);
                     var matchingFile = getMatchingFileInDirectory(prop, directory);
