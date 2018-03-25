@@ -28,9 +28,11 @@ MyWebsite/
         style.css
 ```
 
-Running `pitch serve` inside `MyWebsite` will run a web server in http://127.0.0.1:3000. Accessing you'll see it works.
+Running `pitch serve` inside `MyWebsite` will run a web server in http://127.0.0.1:3000. Access it from the browser check that it's working.
 
-Now change the `index.html` extension to `.ejs`. And the style's to `.scss`. (You may need to stop and run `pitch serve` again at the moment... remember, work in progress ^^). And it works, too.
+Now change the `index.html` extension to `.ejs` and the style's to `.scss`, change the contents of the files, add new styles and reference them from `index.ejs`, or create some partials.
+
+As you can see, pitch takes care of building the needed resources as you request them. It just works.
 
 ## Data ##
 
@@ -55,7 +57,15 @@ Inside `index.ejs`:
 <p>People: <%= data.people.join(", "); %></p>
 ```
 
-And that's all you need to do to include data into your website. Change any file's contents and just reload the page in the browser, it gets re-compiled automatically.
+And that's all you need to do to include data into your website. Change any file's contents and reload the page in the browser, it gets re-compiled automatically.
+
+## Why ##
+
+Got really tired of configuring stuff to build a simple website that I need **right now** because _whatever_.
+
+Wanted something that isn't oriented to a certain type of website (like blogs) and gave me everything I needed, instead of requiring some extra build tasks to transpile something.
+
+Thought that gluing together a template system with some css pre-processing inside a CLI tool should do the trick. And it did.
 
 ## License ##
 
