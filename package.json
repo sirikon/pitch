@@ -1,6 +1,6 @@
 {
   "name": "pitch-cli",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Zero-Configuration Convention-Driven Progressive Static Site Generator.",
   "main": "index.js",
   "scripts": {
@@ -26,6 +26,7 @@
     "caporal": "^0.10.0",
     "chokidar": "^2.0.3",
     "ejs": "^2.5.7",
+    "mime-types": "^2.1.18",
     "node-sass": "^4.8.3"
   }
 }

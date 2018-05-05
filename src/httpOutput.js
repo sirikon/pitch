@@ -1,6 +1,8 @@
 const http = require('http');
 const path = require('path');
 
+const mimeTypes = require('mime-types');
+
 function HttpOutput (options, runner) {
     this.options = options;
     this.runner = runner;
@@ -22,6 +24,12 @@ HttpOutput.prototype.run = function() {
         if (!this.runner.fileOutputIndex[filePath]) {
             res.statusCode = 404;
             res.end();
+            return;
+        }
+
+        var contentType = mimeTypes.lookup(filePath);
+        if (contentType) {
+            res.setHeader('Content-Type', contentType);
         }
 
         try {
