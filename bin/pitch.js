@@ -14,8 +14,10 @@ program
 
     .command('serve')
     .description('Serves the static page for development with live transpilation.')
-    .action(() => {
-        pitch.serve();
+    .option('--host <host>', 'Sets the host to use with the http server', program.STRING, 'localhost')
+    .option('--port <port>', 'Sets the port to use with the http server', program.INT, 3000)
+    .action((args, options) => {
+        pitch.serve(options);
     });
 
 program.parse(process.argv);

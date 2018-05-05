@@ -1,10 +1,8 @@
 const http = require('http');
 const path = require('path');
 
-const hostname = '127.0.0.1';
-const port = 3000;
-
-function HttpOutput (runner) {
+function HttpOutput (options, runner) {
+    this.options = options;
     this.runner = runner;
 }
 
@@ -35,8 +33,8 @@ HttpOutput.prototype.run = function() {
         }
     });
     
-    server.listen(port, hostname, () => {
-        console.log(`Development server running on http://${hostname}:${port}/`);
+    server.listen(this.options.port, this.options.host, () => {
+        console.log(`Development server running on http://${this.options.host}:${this.options.port}/`);
     });
 }
 

@@ -16,8 +16,8 @@ function build() {
     filesystemOutput('./dist', buildRunner())
 }
 
-function serve() {
-    new HttpOutput(buildRunner()).run();
+function serve(options) {
+    new HttpOutput(options, buildRunner()).run();
 }
 
 module.exports = { build, serve, version }
