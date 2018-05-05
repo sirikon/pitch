@@ -13,7 +13,7 @@ function getFilePathFromRequest(req) {
     if (file === '') {
         file = 'index.html';
     }
-    return file.replace('/', path.sep);
+    return file.replace(/\//g, path.sep);
 }
 
 HttpOutput.prototype.run = function() {
