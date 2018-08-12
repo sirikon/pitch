@@ -7,7 +7,7 @@ const DATA_PATH_SYMBOL = Symbol('Data Path');
 
 const joinPath = (chunks) => path.join.apply(null, chunks);
 const getDirectoryFiles = (directoryPath) => fs.readdirSync(directoryPath);
-const fileIsDirectory = (filePath) => fs.existsSync(joinPath(filePath)) && fs.statSync(joinPath(filePath)).isDirectory();
+const fileIsDirectory = (filePath) => fs.existsSync(joinPath([DATA_BASE_DIR].concat(filePath))) && fs.statSync(joinPath([DATA_BASE_DIR].concat(filePath))).isDirectory();
 
 function getMatchingFileInDirectory(name, directory) {
     var matchingFiles = getDirectoryFiles(directory)
