@@ -5,11 +5,12 @@ const { filesystemOutput } = require('./src/filesystemOutput');
 const { HttpOutput } = require('./src/httpOutput');
 const { Runner } = require('./src/runner');
 
-var version = require('./package.json').version;
+const version = require('./package.json').version;
 
 function buildRunner() {
-    var filesystemInput = new FilesystemInput('./src');
-    return new Runner(filesystemInput, [sassProcessor, ejsProcessor]);
+    const filesystemInput = new FilesystemInput('./src');
+    const router = require(process.cwd() + '/router.js');
+    return new Runner(filesystemInput, [sassProcessor, ejsProcessor], router);
 }
 
 function build() {

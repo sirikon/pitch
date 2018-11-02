@@ -24,7 +24,7 @@ FilesystemInput.prototype.stopWatch = function() {
 }
 
 FilesystemInput.prototype.startWatch = function() {
-    this.watcher = chokidar.watch(this.srcDir, { ignored: path.join(this.srcDir, '_src') });
+    this.watcher = chokidar.watch(this.srcDir);
     this.watcher
         .on('all', (event, rawPath) => {
             filePath = path.relative(this.srcDir, rawPath);
