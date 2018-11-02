@@ -103,4 +103,12 @@ Runner.prototype.stop = function() {
     this.input.stop();
 }
 
+Runner.prototype.routes = function() {
+    return Object.keys(this.fileOutputIndex);
+}
+
+Runner.prototype.routeExists = function(route) {
+    return !!this.fileOutputIndex[route];
+}
+
 module.exports = { Runner };

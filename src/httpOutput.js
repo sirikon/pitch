@@ -21,7 +21,7 @@ HttpOutput.prototype.run = function() {
         res.statusCode = 200;
         var filePath = getFilePathFromRequest(req);
 
-        if (!this.runner.fileOutputIndex[filePath]) {
+        if (!this.runner.routeExists(filePath)) {
             res.statusCode = 404;
             res.end();
             return;

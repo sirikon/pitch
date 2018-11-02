@@ -108,4 +108,26 @@ describe('Runner', function() {
             'index.html': { in: 'index.ejs', process: 'ejs', out: 'index.html' }
         });
     });
+    describe('Routing', function() {
+        it('should have a method called "routes" which returns the current mapped routes.', function() {
+            var input = createInputMock();
+            var runner = new Runner(input, processors);
+            input.events.emit('add', ['index.ejs', 'about.html', 'style.scss']);
+
+            var routes = runner.routes();
+            assert.deepEqual(routes, [
+                'index.html', 'about.html', 'style.css'
+            ]);
+        });
+        it('should have a method called "routeExists" which returns if a route exists or not.', function() {
+            var input = createInputMock();
+            var runner = new Runner(input, processors);
+            input.events.emit('add', ['index.ejs', 'about.html', 'style.scss']);
+
+            assert.equal(runner.routeExists('index.html'), true);
+            assert.equal(runner.routeExists('about.html'), true);
+            assert.equal(runner.routeExists('style.css'), true);
+            assert.equal(runner.routeExists('other.html'), false);
+        });
+    });
 });
