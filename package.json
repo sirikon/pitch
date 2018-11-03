@@ -25,9 +25,9 @@
   },
   "dependencies": {
     "caporal": "^0.10.0",
-    "chokidar": "^2.0.3",
+    "chokidar": "^2.0.4",
     "ejs": "^2.5.7",
     "mime-types": "^2.1.18",
-    "node-sass": "^4.8.3"
+    "node-sass": "^4.9.4"
   }
 }
