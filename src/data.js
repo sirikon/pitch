@@ -16,7 +16,8 @@ function getMatchingFileInDirectory(name, directory) {
         .filter(f => filenameWithoutExtension(f) === name);
     
     if (matchingFiles.length > 0) {
-        return path.join(directory, matchingFiles[0]);
+        const firstFile = matchingFiles[0];
+        return path.join(directory, firstFile);
     }
 
     return null;
@@ -25,6 +26,23 @@ function getMatchingFileInDirectory(name, directory) {
 function requireUncached(modulePath){
     delete require.cache[require.resolve(modulePath)]
     return require(modulePath)
+}
+
+function readContent(filePath) {
+    const extension = path.extname(filePath);
+
+    if (extension === '.js') {
+        return requireUncached(path.resolve(filePath)).data;
+    }
+
+    const content = fs.readFileSync(filePath, { encoding: 'utf8' });
+
+    switch(extension) {
+        case '.json':
+            return JSON.parse(content);
+        default:
+            return content;
+    }
 }
 
 function createDataProxy(dataPath, dataBaseDir) {
@@ -42,32 +60,21 @@ function createDataProxy(dataPath, dataBaseDir) {
                 const dataBaseDir = target[DATA_BASE_DIR_SYMBOL];
                 const previousDataPath = target[DATA_PATH_SYMBOL];
                 const currentDataPath = previousDataPath.concat(propName);
-                const currentFilesystemPath = joinPath([dataBaseDir].concat(currentDataPath));
 
-                if (fileIsDirectory(currentFilesystemPath)) {
+                const currentFilePath = joinPath([dataBaseDir].concat(currentDataPath));
+
+                if (fileIsDirectory(currentFilePath)) {
                     return createDataProxy(currentDataPath, dataBaseDir);
                 }
 
-                const directory = joinPath([dataBaseDir].concat(previousDataPath));
-                const matchingFile = getMatchingFileInDirectory(propName, directory);
+                const currentDirectoryPath = joinPath([dataBaseDir].concat(previousDataPath));
+                const matchingFile = getMatchingFileInDirectory(propName, currentDirectoryPath);
 
                 if (!matchingFile) {
                     throw new Error(`Data not found: ${currentDataPath.join('.')}`);
                 }
 
-                var extension = path.extname(matchingFile);
-                
-                if (extension === '.js') {
-                    return requireUncached(path.resolve(matchingFile)).data;
-                }
-
-                var content = fs.readFileSync(matchingFile, { encoding: 'utf8' });
-
-                if (extension === '.json') {
-                    return JSON.parse(content);
-                }
-
-                return content;
+                return readContent(matchingFile);
             }
             return target[prop];
         }
