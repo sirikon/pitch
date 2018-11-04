@@ -3,6 +3,7 @@
 set -e
 
 SCRIPT_START_FOLDER=$PWD
+PITCH_BIN=$PWD/../bin/pitch.js
 
 function test-folder {
     echo "Running tests for $1"
@@ -10,7 +11,7 @@ function test-folder {
     cd $SCRIPT_START_FOLDER
     cd $1
     rm -rf dist
-    pitch build
+    node $PITCH_BIN build
     diff -r dist expected-dist
     if [ $? -eq 0 ]; then
         return 0
