@@ -20,6 +20,11 @@ function filesystemOutput(distDir, runner) {
             runner.process(route).pipe(writeStream);
         });
         runner.stop();
+    })
+    .then(() => {}, (err) => {
+        console.log(err);
+        runner.stop();
+        process.exit(1);
     });
 }
 

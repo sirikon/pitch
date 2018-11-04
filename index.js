@@ -1,3 +1,6 @@
+const fs = require('fs');
+const path = require('path');
+
 const { FilesystemInput } = require('./src/filesystemInput');
 const { sassProcessor } = require('./src/processors/sass');
 const { ejsProcessor } = require('./src/processors/ejs');
@@ -7,10 +10,18 @@ const { Runner } = require('./src/runner');
 
 const version = require('./package.json').version;
 
+function getRouter() {
+    const routerPath = path.join(process.cwd(), 'router.js');
+    const fileExists = fs.existsSync(routerPath);
+    if (fileExists) {
+        return require(routerPath);
+    }
+    return null;
+}
+
 function buildRunner() {
     const filesystemInput = new FilesystemInput('./src');
-    const router = require(process.cwd() + '/router.js');
-    return new Runner(filesystemInput, [sassProcessor, ejsProcessor], router);
+    return new Runner(filesystemInput, [sassProcessor, ejsProcessor], getRouter());
 }
 
 function build() {

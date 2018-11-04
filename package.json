@@ -4,7 +4,8 @@
   "description": "Zero-Configuration Convention-Driven Progressive Static Site Generator.",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha && nyc report --reporter=html"
+    "test": "nyc mocha && nyc report --reporter=html",
+    "test-output": "cd test-output && ./run.sh"
   },
   "repository": {
     "type": "git",

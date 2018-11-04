@@ -144,6 +144,9 @@ Runner.prototype.router = function() {
             .forEach(path => {
                 const file = customRouterResult[path].target;
                 const mapping = this.fileInputIndex[file];
+                if (!mapping) {
+                    throw new Error(`The file ${file} couldn't be found. And it's required by custom route ${path} as target.`);
+                }
                 result[path] = {
                     in: mapping.in,
                     process: mapping.process,
