@@ -1,2 +1,6 @@
 .circleci/
+test/
 testing-folder/
+test-output/
+coverage/
+.nyc_output/
