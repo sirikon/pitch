@@ -1,6 +1,7 @@
 const path = require('path');
 
-const { data } = require('./data');
+const { init } = require('./data');
+const data = init('./data');
 
 function validateFiles(files) {
     if (files === null || files === undefined) throw new Error("No file list provided");
