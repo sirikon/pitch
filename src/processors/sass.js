@@ -5,10 +5,10 @@ module.exports = {
     sassProcessor: {
         name: 'sass',
         test(file) {
-            return file.substr(-5) == '.scss'
+            return file.substr(-5) == '.scss';
         },
         outputExtension: 'css',
-        process({ absolutePath, readStream }) {
+        process({ absolutePath }) {
             var stream = new Readable();
             stream._read = function () {};
 
@@ -23,4 +23,4 @@ module.exports = {
             return stream;
         }
     }
-}
+};

@@ -10,13 +10,13 @@ describe('Data', function() {
     it ('should throw exception when base dir is invalid', function() {
         let exception = null;
         try {
-            var data = init();
+            init();
         }
         catch(err) {
             exception = err;
         }
         assert.notEqual(exception, null);
-    })
+    });
     it ('should work with simple JSON object', function() {
         var data = init(pathToTestFolder('single-json'));
         assert.deepEqual(data.people, [
@@ -39,7 +39,7 @@ describe('Data', function() {
         let exception = null;
         try {
             var data = init(pathToTestFolder('deep-js'));
-            var content = data.missing;
+            data.missing;
         }
         catch(err) {
             exception = err;

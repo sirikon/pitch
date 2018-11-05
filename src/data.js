@@ -33,10 +33,10 @@ function readContent(filePath) {
     const content = fs.readFileSync(filePath, { encoding: 'utf8' });
 
     switch(extension) {
-        case '.json':
-            return JSON.parse(content);
-        default:
-            return content;
+    case '.json':
+        return JSON.parse(content);
+    default:
+        return content;
     }
 }
 
@@ -71,13 +71,13 @@ function createDataProxy(dataPath, dataBaseDir) {
 
                 return readContent(matchingFile);
             }
-            return target[prop];
+            return target[propName];
         }
-    })
+    });
 }
 
 function init(dataBaseDir) {
     return createDataProxy(null, dataBaseDir);
 }
 
-module.exports = { init }
+module.exports = { init };

@@ -1,6 +1,3 @@
-const fs = require('fs');
-const path = require('path');
-
 const { FilesystemInput } = require('./src/filesystemInput');
 const { sassProcessor } = require('./src/processors/sass');
 const { ejsProcessor } = require('./src/processors/ejs');
@@ -17,11 +14,11 @@ function buildRunner() {
 }
 
 function build() {
-    filesystemOutput('./dist', buildRunner())
+    filesystemOutput('./dist', buildRunner());
 }
 
 function serve(options) {
     new HttpOutput(options, buildRunner()).run();
 }
 
-module.exports = { build, serve, version }
+module.exports = { build, serve, version };

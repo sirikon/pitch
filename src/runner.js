@@ -4,7 +4,7 @@ const { init } = require('./data');
 const data = init('./data');
 
 function validateFiles(files) {
-    if (files === null || files === undefined) throw new Error("No file list provided");
+    if (files === null || files === undefined) throw new Error('No file list provided');
 }
 
 function setFileExtension(file, extension) {
@@ -33,7 +33,7 @@ Runner.prototype.setupReadyPromise = function() {
     this.readyPromise = new Promise((resolve) => {
         this.readyPromiseResolver = resolve;
     });
-}
+};
 
 Runner.prototype.bindEvents = function() {
     this.input.events.on('add', this.add.bind(this));
@@ -41,7 +41,7 @@ Runner.prototype.bindEvents = function() {
     this.input.events.on('ready', () => {
         this.readyPromiseResolver();
     });
-}
+};
 
 Runner.prototype.add = function(files) {
     validateFiles(files);
@@ -64,14 +64,14 @@ Runner.prototype.add = function(files) {
         
         this.fileInputIndex[mapping.in] = mapping;
     });
-}
+};
 
 Runner.prototype.remove = function(files) {
     validateFiles(files);
     files.forEach((file) => {
         delete this.fileInputIndex[file];
     });
-}
+};
 
 Runner.prototype.process = function(route) {
     const mapping = this.route(route);
@@ -84,21 +84,21 @@ Runner.prototype.process = function(route) {
     } else {
         return file.readStream;
     }
-}
+};
 
 Runner.prototype.generateProcessorsIndex = function() {
     this.processors.forEach((processor) => {
         this.processorsIndex[processor.name] = processor;
     });
-}
+};
 
 Runner.prototype.isReady = function() {
     return this.readyPromise;
-}
+};
 
 Runner.prototype.stop = function() {
     this.input.stop();
-}
+};
 
 Runner.prototype.getAutoRouterExcludedPath = function() {
     const customRouter = this.customRouterProvider();
@@ -111,7 +111,7 @@ Runner.prototype.getAutoRouterExcludedPath = function() {
         return customRouter.auto.exclude;
     }
     return null;
-}
+};
 
 Runner.prototype.isAutoRoutingEnabled = function() {
     const customRouter = this.customRouterProvider();
@@ -125,7 +125,7 @@ Runner.prototype.isAutoRoutingEnabled = function() {
     }
 
     return true;
-}
+};
 
 Runner.prototype.router = function() {
     const customRouter = this.customRouterProvider();
@@ -162,18 +162,18 @@ Runner.prototype.router = function() {
     }
 
     return result;
-}
+};
 
 Runner.prototype.routes = function() {
     return Object.keys(this.router());
-}
+};
 
 Runner.prototype.route = function(route) {
     return this.router()[route];
-}
+};
 
 Runner.prototype.routeExists = function(route) {
     return !!this.router()[route];
-}
+};
 
 module.exports = { Runner };

@@ -9,4 +9,4 @@ module.exports = {
     get data() {
         return readPeople().concat(['Spiderman', `Charizard lvl ${(9 * 7)}`]);
     }
-}
+};

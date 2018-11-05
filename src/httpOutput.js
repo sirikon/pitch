@@ -44,6 +44,6 @@ HttpOutput.prototype.run = function() {
     server.listen(this.options.port, this.options.host, () => {
         console.log(`Development server running on http://${this.options.host}:${this.options.port}/`);
     });
-}
+};
 
 module.exports = { HttpOutput };

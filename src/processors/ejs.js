@@ -1,4 +1,3 @@
-const fs = require('fs');
 const { Readable } = require('stream');
 const ejs = require('ejs');
 
@@ -6,10 +5,10 @@ module.exports = {
     ejsProcessor: {
         name: 'ejs',
         test(file) {
-            return file.substr(-4) == '.ejs'
+            return file.substr(-4) == '.ejs';
         },
         outputExtension: 'html',
-        process({ absolutePath, readStream, data, params }) {
+        process({ absolutePath, data, params }) {
             var stream = new Readable();
             stream._read = function () {};
 
@@ -22,4 +21,4 @@ module.exports = {
             return stream;
         }
     }
-}
+};

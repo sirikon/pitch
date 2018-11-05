@@ -21,11 +21,11 @@ function filesystemOutput(distDir, runner) {
         });
         runner.stop();
     })
-    .then(() => {}, (err) => {
-        console.log(err);
-        runner.stop();
-        process.exit(1);
-    });
+        .then(() => {}, (err) => {
+            console.log(err);
+            runner.stop();
+            process.exit(1);
+        });
 }
 
-module.exports = { filesystemOutput }
+module.exports = { filesystemOutput };

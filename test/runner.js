@@ -6,14 +6,14 @@ const processors = [
     {
         name: 'sass',
         test(file) {
-            return file.substr(-5) == '.scss'
+            return file.substr(-5) == '.scss';
         },
         outputExtension: 'css'
     },
     {
         name: 'ejs',
         test(file) {
-            return file.substr(-4) == '.ejs'
+            return file.substr(-4) == '.ejs';
         },
         outputExtension: 'html'
     }
@@ -23,7 +23,7 @@ function createInputMock() {
     return {
         events: new EventEmitter(),
         run() {}
-    }
+    };
 }
 
 describe('Runner', function() {
@@ -145,9 +145,9 @@ describe('Runner', function() {
                     custom: () => {
                         return {
                             'a.html': { target: 'index.ejs' },
-                        }
+                        };
                     }
-                }});
+                };});
                 input.events.emit('add', ['index.ejs', 'about.html', 'style.scss', '_src/testing.ejs']);
     
                 assert.equal(runner.routeExists('index.html'), true);
@@ -163,9 +163,9 @@ describe('Runner', function() {
                     custom: () => {
                         return {
                             'a.html': { target: 'index.ejs' },
-                        }
+                        };
                     }
-                }});
+                };});
                 input.events.emit('add', ['index.ejs', 'about.html', 'style.scss', '_src/testing.ejs']);
     
                 assert.equal(runner.routeExists('index.html'), false);
@@ -183,9 +183,9 @@ describe('Runner', function() {
                     custom: () => {
                         return {
                             'a.html': { target: 'index.ejs' },
-                        }
+                        };
                     }
-                }});
+                };});
                 input.events.emit('add', ['index.ejs', 'about.html', 'style.scss', '_src/testing.ejs']);
     
                 assert.equal(runner.routeExists('index.html'), true);
