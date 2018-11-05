@@ -131,7 +131,7 @@ describe('Runner', function() {
         describe('Custom Router', function() {
             it('should accept an empty object as undefined custom router', function() {
                 var input = createInputMock();
-                var runner = new Runner(input, processors, {});
+                var runner = new Runner(input, processors, () => null);
                 input.events.emit('add', ['index.ejs', 'about.html', 'style.scss']);
     
                 assert.equal(runner.routeExists('index.html'), true);
@@ -141,13 +141,13 @@ describe('Runner', function() {
             });
             it('should be modified by passing a custom router', function() {
                 var input = createInputMock();
-                var runner = new Runner(input, processors, {
+                var runner = new Runner(input, processors, () => { return {
                     custom: () => {
                         return {
                             'a.html': { target: 'index.ejs' },
                         }
                     }
-                });
+                }});
                 input.events.emit('add', ['index.ejs', 'about.html', 'style.scss', '_src/testing.ejs']);
     
                 assert.equal(runner.routeExists('index.html'), true);
@@ -158,14 +158,14 @@ describe('Runner', function() {
             });
             it('should be modified by passing a custom router which also disables automatic routing', function() {
                 var input = createInputMock();
-                var runner = new Runner(input, processors, {
+                var runner = new Runner(input, processors, () => { return {
                     auto: false,
                     custom: () => {
                         return {
                             'a.html': { target: 'index.ejs' },
                         }
                     }
-                });
+                }});
                 input.events.emit('add', ['index.ejs', 'about.html', 'style.scss', '_src/testing.ejs']);
     
                 assert.equal(runner.routeExists('index.html'), false);
@@ -176,7 +176,7 @@ describe('Runner', function() {
             });
             it('should be modified by passing a custom router which also excludes a folder', function() {
                 var input = createInputMock();
-                var runner = new Runner(input, processors, {
+                var runner = new Runner(input, processors, () => { return {
                     auto: {
                         exclude: '_src'
                     },
@@ -185,7 +185,7 @@ describe('Runner', function() {
                             'a.html': { target: 'index.ejs' },
                         }
                     }
-                });
+                }});
                 input.events.emit('add', ['index.ejs', 'about.html', 'style.scss', '_src/testing.ejs']);
     
                 assert.equal(runner.routeExists('index.html'), true);

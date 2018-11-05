@@ -35,7 +35,13 @@ function recursiveMkdir(targetDir, { isRelativeToScript = false } = {}) {
     }, initDir);
 }
 
+function requireUncached(modulePath){
+    delete require.cache[require.resolve(modulePath)]
+    return require(modulePath)
+}
+
 module.exports = {
     filenameWithoutExtension,
-    recursiveMkdir
+    recursiveMkdir,
+    requireUncached
 };

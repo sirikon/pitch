@@ -12,10 +12,10 @@ function setFileExtension(file, extension) {
     return file.substr(0, lastDot) + '.' + extension;
 }
 
-function Runner(input, processors, customRouter) {
+function Runner(input, processors, customRouterProvider) {
     this.input = input;
     this.processors = processors || [];
-    this.customRouter = customRouter || null;
+    this.customRouterProvider = customRouterProvider || (() => null);
 
     this.readyPromise = null;
     this.readyPromiseResolver = null;
@@ -74,11 +74,11 @@ Runner.prototype.remove = function(files) {
 }
 
 Runner.prototype.process = function(route) {
-    var mapping = this.route(route);
-    var file = this.input.read(mapping.in);
+    const mapping = this.route(route);
+    const file = this.input.read(mapping.in);
     file.data = data;
     file.params = mapping.params;
-    var processor = this.processorsIndex[mapping.process];
+    const processor = this.processorsIndex[mapping.process];
     if (processor) {
         return processor.process(file);
     } else {
@@ -101,22 +101,26 @@ Runner.prototype.stop = function() {
 }
 
 Runner.prototype.getAutoRouterExcludedPath = function() {
-    if (this.customRouter && this.customRouter.auto) {
-        let excludedPath = this.customRouter.auto.exclude;
+    const customRouter = this.customRouterProvider();
+
+    if (customRouter && customRouter.auto) {
+        let excludedPath = customRouter.auto.exclude;
         if (excludedPath[excludedPath.length - 1] != path.sep) {
             excludedPath += path.sep;
         }
-        return this.customRouter.auto.exclude;
+        return customRouter.auto.exclude;
     }
     return null;
 }
 
 Runner.prototype.isAutoRoutingEnabled = function() {
-    if (!this.customRouter) {
+    const customRouter = this.customRouterProvider();
+
+    if (!customRouter) {
         return true;
     }
 
-    if (this.customRouter.auto === false) {
+    if (customRouter.auto === false) {
         return false;
     }
 
@@ -124,7 +128,8 @@ Runner.prototype.isAutoRoutingEnabled = function() {
 }
 
 Runner.prototype.router = function() {
-    var result = {};
+    const customRouter = this.customRouterProvider();
+    const result = {};
 
     if (this.isAutoRoutingEnabled()) {
         Object.keys(this.fileInputIndex)
@@ -139,8 +144,8 @@ Runner.prototype.router = function() {
             });
     }
 
-    if (this.customRouter && this.customRouter.custom) {
-        const customRouterResult = this.customRouter.custom(data);
+    if (customRouter && customRouter.custom) {
+        const customRouterResult = customRouter.custom(data);
         Object.keys(customRouterResult)
             .forEach(path => {
                 const file = customRouterResult[path].target;

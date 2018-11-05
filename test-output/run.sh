@@ -25,6 +25,7 @@ test-folder ejs-and-scss
 test-folder ejs-and-data
 test-folder custom-router
 test-folder deep
+test-folder full
 
 echo "Testing Successful"
 exit 0

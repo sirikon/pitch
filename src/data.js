@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { filenameWithoutExtension } = require('./utils');
+const { filenameWithoutExtension, requireUncached } = require('./utils');
 
 const DATA_PATH_SYMBOL = Symbol('Data Path');
 const DATA_BASE_DIR_SYMBOL = Symbol('Data Base Dir');
@@ -21,11 +21,6 @@ function getMatchingFileInDirectory(name, directory) {
     }
 
     return null;
-}
-
-function requireUncached(modulePath){
-    delete require.cache[require.resolve(modulePath)]
-    return require(modulePath)
 }
 
 function readContent(filePath) {

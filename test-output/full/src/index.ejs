@@ -1,0 +1,26 @@
+<html>
+    <%- include('_src/partials/head'); %>
+    <body>
+        <div class="content">
+            <h1>This is the testing folder for <b>Pitch</b></h1>
+            
+            <div class="box">
+                <p>Created for testing purposes.</p>
+                <p>People: <%= data.people.join(", "); %></p>
+                <p>People2 (extended): <%= data.people2.join(", "); %></p>
+                <p>People3 (deep): <%= data.deep.people3.join(", "); %></p>
+            </div>
+
+            <br>
+
+            <div class="box">
+                <h2>Products</h2>
+                <ul>
+                    <% data.products.forEach((product) => { %>
+                        <a href="products/<%= product.id %>.html"><li><%= product.name %></li></a>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

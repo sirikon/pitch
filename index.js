@@ -6,22 +6,14 @@ const { sassProcessor } = require('./src/processors/sass');
 const { ejsProcessor } = require('./src/processors/ejs');
 const { filesystemOutput } = require('./src/filesystemOutput');
 const { HttpOutput } = require('./src/httpOutput');
+const { customRouterProvider } = require('./src/customRouterProvider');
 const { Runner } = require('./src/runner');
 
 const version = require('./package.json').version;
 
-function getRouter() {
-    const routerPath = path.join(process.cwd(), 'router.js');
-    const fileExists = fs.existsSync(routerPath);
-    if (fileExists) {
-        return require(routerPath);
-    }
-    return null;
-}
-
 function buildRunner() {
     const filesystemInput = new FilesystemInput('./src');
-    return new Runner(filesystemInput, [sassProcessor, ejsProcessor], getRouter());
+    return new Runner(filesystemInput, [sassProcessor, ejsProcessor], customRouterProvider);
 }
 
 function build() {
