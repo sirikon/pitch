@@ -4,3 +4,4 @@ testing-folder/
 test-output/
 coverage/
 .nyc_output/
+.eslintrc.json
