@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const showdown = require('showdown');
+
 const { filenameWithoutExtension, requireUncached } = require('./utils');
 
 const DATA_PATH_SYMBOL = Symbol('Data Path');
@@ -25,6 +27,7 @@ function getMatchingFileInDirectory(name, directory) {
 
 function readContent(filePath) {
     const extension = path.extname(filePath);
+    const showdownConverter = new showdown.Converter({ metadata: true });
 
     if (extension === '.js') {
         return requireUncached(path.resolve(filePath)).data;
@@ -35,6 +38,12 @@ function readContent(filePath) {
     switch(extension) {
     case '.json':
         return JSON.parse(content);
+    case '.md':
+        return {
+            text: content,
+            html: showdownConverter.makeHtml(content),
+            meta: showdownConverter.getMetadata()
+        };
     default:
         return content;
     }
