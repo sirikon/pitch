@@ -58,20 +58,19 @@ function printHelp(app) {
     console.log();
 }
 
-function runApp(app) {
-    const parsedArgs = parseArgs(getArgs());
-    if (parsedArgs.command === 'help') {
+function executeAppWithArguments(app, args) {
+    if (args.command === 'help') {
         printHelp(app);
     } else {
         const availableCommands = Object.keys(app.commands);
-        if (availableCommands.indexOf(parsedArgs.command) >= 0) {
+        if (availableCommands.indexOf(args.command) >= 0) {
             const flags = {};
-            const commandDef = app.commands[parsedArgs.command];
+            const commandDef = app.commands[args.command];
             if (commandDef.flags) {
                 Object.keys(commandDef.flags).forEach((flag) => {
                     flags[flag] = commandDef.flags[flag].default;
-                    if (parsedArgs.flags[flag]) {
-                        flags[flag] = parsedArgs.flags[flag];
+                    if (args.flags[flag]) {
+                        flags[flag] = args.flags[flag];
                     }
                 });
                 commandDef.action(flags);
@@ -79,13 +78,19 @@ function runApp(app) {
                 commandDef.action();
             }
         } else {
-            console.log(`Command '${parsedArgs.command}' doesn't exist.`);
+            console.log(`Command '${args.command}' doesn't exist.`);
             console.log(`Run \`${colors.bold('pitch')} ${colors.bold(colors.cyan('help'))}\` for more info.`);
         }
     }
 }
 
+function run(app) {
+    const parsedArgs = parseArgs(getArgs());
+    executeAppWithArguments(app, parsedArgs);
+}
+
 module.exports = {
-    runApp,
+    run,
+    executeAppWithArguments,
     parseArgs
 };

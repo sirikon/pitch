@@ -34,4 +34,4 @@ const app = {
     }
 };
 
-cli.runApp(app);
+cli.run(app);
