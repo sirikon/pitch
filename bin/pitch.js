@@ -22,6 +22,12 @@ const app = {
                 pitch.serve(options);
             }
         },
+        version: {
+            description: 'Displays the version.',
+            action: () => {
+                console.log(pitch.version);
+            }
+        },
         help: {
             description: 'Shows this helpful output.'
         }

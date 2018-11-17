@@ -39,5 +39,14 @@ describe('CLI', function() {
                 }
             });
         });
+        it('should parse correctly a string with a single command and two flags', function() {
+            assert.deepEqual(cli.parseArgs(['serve', '--host', '0.0.0.0', '--port', '8080']), {
+                command: 'serve',
+                flags: {
+                    host: '0.0.0.0',
+                    port: '8080'
+                }
+            });
+        });
     });
 });
