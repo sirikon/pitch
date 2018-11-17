@@ -1,6 +1,7 @@
 const http = require('http');
 const path = require('path');
 
+const colors = require('colors/safe');
 const mimeTypes = require('mime-types');
 
 function HttpOutput (options, runner) {
@@ -42,7 +43,8 @@ HttpOutput.prototype.run = function() {
     });
     
     server.listen(this.options.port, this.options.host, () => {
-        console.log(`Development server running on http://${this.options.host}:${this.options.port}/`);
+        console.log(`${colors.bold('pitch')} ${colors.bold(colors.cyan('server'))} running.`);
+        console.log(`http://${colors.bold(colors.blue(this.options.host))}:${colors.bold(colors.blue(this.options.port))}/`);
     });
 };
 
