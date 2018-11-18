@@ -49,4 +49,74 @@ describe('CLI', function() {
             });
         });
     });
+
+    describe('executeAppWithArguments()', function() {
+        it('should run the requested command', function() {
+            let actionRan = false;
+            const app = {
+                commands: {
+                    test: {
+                        action: () => {
+                            actionRan = true;
+                        }
+                    }
+                }
+            };
+            const args = {
+                command: 'test'
+            };
+            cli.executeAppWithArguments(app, args);
+            assert.equal(actionRan, true);
+        });
+        it('should run the requested command with default flags', function() {
+            let receivedFlags = null;
+            const app = {
+                commands: {
+                    test: {
+                        flags: {
+                            flagOne: { default: 'foo' }
+                        },
+                        action: (flags) => {
+                            receivedFlags = flags;
+                        }
+                    }
+                }
+            };
+            const args = {
+                command: 'test',
+                flags: {}
+            };
+            cli.executeAppWithArguments(app, args);
+            assert.deepEqual(receivedFlags, {
+                flagOne: 'foo'
+            });
+        });
+
+        it('should run the requested command with given flags over default ones and ignore others', function() {
+            let receivedFlags = null;
+            const app = {
+                commands: {
+                    test: {
+                        flags: {
+                            flagOne: { default: 'foo' }
+                        },
+                        action: (flags) => {
+                            receivedFlags = flags;
+                        }
+                    }
+                }
+            };
+            const args = {
+                command: 'test',
+                flags: {
+                    flagOne: 'bar',
+                    flagTwo: 'ignored'
+                }
+            };
+            cli.executeAppWithArguments(app, args);
+            assert.deepEqual(receivedFlags, {
+                flagOne: 'bar'
+            });
+        });
+    });
 });
