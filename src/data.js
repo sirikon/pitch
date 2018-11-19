@@ -59,6 +59,28 @@ function createDataProxy(dataPath, dataBaseDir) {
     };
     return new Proxy(baseObject, {
         has: () => true,
+        ownKeys: (target) => {
+            const dataBaseDir = target[DATA_BASE_DIR_SYMBOL];
+            const dataPath = target[DATA_PATH_SYMBOL];
+            const filesInDirectory = getDirectoryFiles(joinPath([dataBaseDir].concat(dataPath)));
+            return filesInDirectory.map((fileName) => {
+                var dotIndex = fileName.lastIndexOf('.');
+                if (dotIndex === 0) {
+                    return null;
+                }
+                if (dotIndex > 0) {
+                    return fileName.split('.').slice(0, -1).join('.');
+                }
+
+                return fileName;
+            }).filter(name => name !== null);
+        },
+        getOwnPropertyDescriptor: () => {
+            return {
+                enumerable: true,
+                configurable: true,
+            };
+        },
         get(target, propName) {
             if (typeof propName === 'string') {
                 const dataBaseDir = target[DATA_BASE_DIR_SYMBOL];

@@ -52,4 +52,14 @@ describe('Data', function() {
         var data = init(pathToTestFolder('plain-text'));
         assert.equal(data.info, 'Information');
     });
+    it('should work with Object.keys', function() {
+        var data = init(pathToTestFolder('kitchensink'));
+        const keys = Object.keys(data.posts);
+        assert.deepEqual(keys, ['a', 'b', 'c', 'extensionless', 'more-posts']);
+    });
+    it('should work with Object.getOwnPropertyNames', function() {
+        var data = init(pathToTestFolder('kitchensink'));
+        const keys = Object.getOwnPropertyNames(data.posts);
+        assert.deepEqual(keys, ['a', 'b', 'c', 'extensionless', 'more-posts']);
+    });
 });
