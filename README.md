@@ -3,7 +3,10 @@
 </p>
 
 # pitch #
-
+[![CircleCI](https://circleci.com/gh/Sirikon/pitch.svg?style=svg)](https://circleci.com/gh/Sirikon/pitch)
+[![Pitch Version](https://img.shields.io/npm/v/pitch-cli.svg)](https://www.npmjs.com/package/pitch-cli) 
+[![Pitch Dependencies](https://david-dm.org/sirikon/pitch.svg)](https://david-dm.org/sirikon/pitch)
+[![Pitch License](https://img.shields.io/npm/l/pitch-cli.svg)](https://github.com/Sirikon/pitch/blob/master/LICENSE)
 
 ⚠️**Work in progress**⚠️
 
