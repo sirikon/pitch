@@ -1,3 +1,5 @@
+<img style="max-width: 500px;display:block;margin:auto;" src="./github-assets/logo.svg" />
+
 # pitch #
 
 [![CircleCI](https://circleci.com/gh/Sirikon/pitch.svg?style=svg)](https://circleci.com/gh/Sirikon/pitch)
