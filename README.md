@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="450" src="./github-assets/logo.svg" />
+    <img width="450" src="https://raw.githubusercontent.com/Sirikon/pitch/master/github-assets/logo.svg?sanitize=true" />
 </p>
 
 # pitch #
