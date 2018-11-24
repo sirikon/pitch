@@ -23,6 +23,12 @@ describe('Data', function() {
             'Phineas', 'Ferb'
         ]);
     });
+    it ('should work with simple markdown file', function() {
+        var data = init(pathToTestFolder('kitchensink'));
+        assert.deepEqual(data.posts.a.meta, {
+            title: 'Post A'
+        });
+    });
     it ('should work with a deep JSON', function() {
         var data = init(pathToTestFolder('deep-json'));
         assert.deepEqual(data.a.b.c, {

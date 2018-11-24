@@ -1,4 +1,4 @@
-const colors = require('colors');
+const c = require('ansi-colors');
 
 function getArgs() {
     return process.argv.splice(2, process.argv.length-1);
@@ -42,16 +42,16 @@ function parseArgs(args) {
 
 function printHelp(app) {
     const leftSpacing = ' ';
-    console.log(`\n${leftSpacing}${colors.bold(app.name)} ${colors.magenta(colors.bold(app.version))}`);
-    console.log(`${leftSpacing}${colors.grey('Usage: pitch [command] <arguments...>')}`);
+    console.log(`\n${leftSpacing}${c.bold(app.name)} ${c.magenta.bold(app.version)}`);
+    console.log(`${leftSpacing}${c.grey('Usage: pitch [command] <arguments...>')}`);
     console.log();
     Object.keys(app.commands).forEach((commandName) => {
         var command = app.commands[commandName];
-        console.log(`${leftSpacing}  ${colors.bold(colors.cyan(commandName))} - ${command.description}`);
+        console.log(`${leftSpacing}  ${c.bold.cyan(commandName)} - ${command.description}`);
         if (command.flags) {
             Object.keys(command.flags).forEach((flagName) => {
                 var flag = command.flags[flagName];
-                console.log(`${leftSpacing}    ${colors.blue(colors.bold('--' + flagName))} - ${flag.description} ${colors.grey('[' + flag.default + ']')}`);
+                console.log(`${leftSpacing}    ${c.blue.bold('--' + flagName)} - ${flag.description} ${c.grey('[' + flag.default + ']')}`);
             });
         }
     });
@@ -79,7 +79,7 @@ function executeAppWithArguments(app, args) {
             }
         } else {
             console.log(`Command '${args.command}' doesn't exist.`);
-            console.log(`Run \`${colors.bold('pitch')} ${colors.bold(colors.cyan('help'))}\` for more info.`);
+            console.log(`Run \`${c.bold('pitch')} ${c.bold.cyan('help')}\` for more info.`);
         }
     }
 }

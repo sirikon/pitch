@@ -1,5 +1,6 @@
 const { Readable } = require('stream');
 const ejs = require('ejs');
+const print = require('../print');
 
 module.exports = {
     ejsProcessor: {
@@ -13,7 +14,11 @@ module.exports = {
             stream._read = function () {};
 
             ejs.renderFile(absolutePath, { data, params }, (err, result) => {
-                if (err) throw err;
+                if (err) {
+                    print.error(err.stack);
+                    stream.emit('error', err);
+                    return;
+                }
                 stream.push(result);
                 stream.push(null);
             });

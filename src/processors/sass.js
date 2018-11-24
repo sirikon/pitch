@@ -1,5 +1,6 @@
 const sass = require('node-sass');
 const { Readable } = require('stream');
+const print = require('../print');
 
 module.exports = {
     sassProcessor: {
@@ -15,7 +16,11 @@ module.exports = {
             sass.render({
                 file: absolutePath
             }, (err, result) => {
-                if (err) throw err;
+                if (err) {
+                    print.error(err.formatted);
+                    stream.emit('error', err);
+                    return;
+                }
                 stream.push(result.css);
                 stream.push(null);
             });
