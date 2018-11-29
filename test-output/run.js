@@ -39,10 +39,10 @@ function compareResults(folder) {
                 const aContent = fs.readFileSync(aFullPath, { encoding: 'utf8' });
                 const bContent = fs.readFileSync(bFullPath, { encoding: 'utf8' });
                 const contentDiff = differ.diffLines(aContent, bContent);
-                console.log("");
+                console.log('');
                 console.log(aFullPath);
                 console.log(bFullPath);
-                console.log("");
+                console.log('');
 
                 let line = 0;
                 contentDiff.forEach((block) => {
