@@ -11,7 +11,7 @@ const markdownProcessor = unified()
     .use(html);
 
 function fixHtmlEOL(string) {
-    if (process.platform !== 'win32') return;
+    if (process.platform !== 'win32') return string;
     return string.replace(/\n/g, '\r\n');
 }
 
