@@ -147,16 +147,16 @@ Runner.prototype.router = function() {
     if (customRouter && customRouter.custom) {
         const customRouterResult = customRouter.custom(data);
         Object.keys(customRouterResult)
-            .forEach(path => {
-                const file = customRouterResult[path].target;
-                const mapping = this.fileInputIndex[file];
+            .forEach(routePath => {
+                const file = customRouterResult[routePath].target;
+                const mapping = this.fileInputIndex[file ? path.normalize(file) : null];
                 if (!mapping) {
-                    throw new Error(`The file ${file} couldn't be found. And it's required by custom route ${path} as target.`);
+                    throw new Error(`The file ${file} couldn't be found. And it's required by custom route ${routePath} as target.`);
                 }
-                result[path] = {
+                result[routePath] = {
                     in: mapping.in,
                     process: mapping.process,
-                    params: customRouterResult[path].params || {}
+                    params: customRouterResult[routePath].params || {}
                 };
             });
     }

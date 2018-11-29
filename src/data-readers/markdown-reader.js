@@ -10,6 +10,11 @@ const markdownProcessor = unified()
     .use(frontmatter, ['yaml'])
     .use(html);
 
+function fixHtmlEOL(string) {
+    if (process.platform !== 'win32') return;
+    return string.replace(/\n/g, '\r\n');
+}
+
 function parseMarkdown(content) {
     let meta = {};
 
@@ -19,7 +24,7 @@ function parseMarkdown(content) {
         meta = yaml.safeLoad(ast.children[0].value);
     }
 
-    const html = markdownProcessor.stringify(ast).trim();
+    const html = fixHtmlEOL(markdownProcessor.stringify(ast).trim());
 
     return { meta, html };
 }
