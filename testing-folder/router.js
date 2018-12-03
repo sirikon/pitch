@@ -6,7 +6,7 @@ module.exports = {
         var result = {};
 
         data.products.forEach((product) => {
-            result['products/' + product.id + '.html'] = { target: '_src/views/product.ejs', params: { product } };
+            result['products/' + product.id + '/index.html'] = { target: '_src/views/product.ejs', params: { product } };
         });
 
         return result;

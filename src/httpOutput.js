@@ -10,11 +10,11 @@ function HttpOutput (options, runner) {
 }
 
 function getFilePathFromRequest(req) {
-    var file = req.url.substr(1);
-    if (file === '') {
-        file = 'index.html';
+    let file = req.url;
+    if (path.extname(file) === '') {
+        file = path.join(file, 'index.html');
     }
-    return file.replace(/\//g, path.sep);
+    return file.substr(1).replace(/\//g, path.sep);
 }
 
 function handleError(res, err, filePath) {
