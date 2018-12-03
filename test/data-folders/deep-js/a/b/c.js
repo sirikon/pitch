@@ -1,5 +1,7 @@
 module.exports = {
-    data: {
-        name: 'Test c.js'
+    data() {
+        return {
+            name: 'Test c.js'
+        };
     }
 };

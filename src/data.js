@@ -28,7 +28,7 @@ function createDataProxy(dataPath, dataBaseDir) {
                 configurable: true,
             };
         },
-        get(target, propName) {
+        get(target, propName, receiver) {
             if (typeof propName === 'string') {
                 const dataBaseDir = target[DATA_BASE_DIR_SYMBOL];
                 const previousDataPath = target[DATA_PATH_SYMBOL];
@@ -47,7 +47,7 @@ function createDataProxy(dataPath, dataBaseDir) {
                     throw new Error(`Data not found: ${dataPath.join('.')}`);
                 }
 
-                return readContent(matchingFile);
+                return readContent(matchingFile, receiver);
             }
             return target[propName];
         }
@@ -86,8 +86,8 @@ function getMatchingFileInDirectory(name, directory) {
     return null;
 }
 
-function readContent(filePath) {
-    return dataReaders.read(filePath);
+function readContent(filePath, parentData) {
+    return dataReaders.read(filePath, parentData);
 }
 
 function init(dataBaseDir) {

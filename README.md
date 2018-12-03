@@ -12,7 +12,7 @@
 |-|-|
 |[![CircleCI](https://circleci.com/gh/Sirikon/pitch.svg?style=svg)](https://circleci.com/gh/Sirikon/pitch)|[![AppVeyor](https://ci.appveyor.com/api/projects/status/8lfm0qtq7pw34ol0?svg=true)](https://ci.appveyor.com/project/Sirikon/pitch)|
 
-⚠️**Work in progress**⚠️
+⚠️**Work in progress. API might change.**⚠️
 
 Zero-Configuration Convention-Driven Progressive Static Site Generator.
 

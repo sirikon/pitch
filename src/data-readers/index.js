@@ -18,14 +18,14 @@ function defaultReader (filePath) {
 const readers = getReaders();
 
 module.exports = {
-    read (filePath) {
+    read (filePath, parentData) {
         const fileExtension = path.extname(filePath);
 
         const matchingReaders = readers
             .filter((reader) => reader.fileExtension === fileExtension);
 
         if (matchingReaders.length > 0) {
-            return matchingReaders[0].read(filePath);
+            return matchingReaders[0].read(filePath, parentData);
         }
 
         return defaultReader(filePath);
