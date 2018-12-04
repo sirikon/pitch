@@ -4,10 +4,12 @@ const unified = require('unified');
 const markdown = require('remark-parse');
 const frontmatter = require('remark-frontmatter');
 const html = require('remark-html');
+const highlight = require('remark-highlight.js');
 
 const markdownProcessor = unified()
     .use(markdown)
     .use(frontmatter, ['yaml'])
+    .use(highlight)
     .use(html);
 
 function fixHtmlEOL(string) {
