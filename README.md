@@ -12,11 +12,11 @@
 |-|-|
 |[![CircleCI](https://circleci.com/gh/Sirikon/pitch.svg?style=svg)](https://circleci.com/gh/Sirikon/pitch)|[![AppVeyor](https://ci.appveyor.com/api/projects/status/8lfm0qtq7pw34ol0?svg=true)](https://ci.appveyor.com/project/Sirikon/pitch)|
 
-⚠️**Work in progress. API might change.**⚠️
+⚠️ **Work in progress. API might change.** ⚠️
 
-Zero-Configuration Convention-Driven Progressive Static Site Generator.
+The Progressive & Scriptable Static Site Generator.
 
-The objetive of pitch is to provide a tool capable of building static websites without any configuration. Just a `src` folder should be enough to build a static website.
+The objetive of pitch is to provide a powerful tool capable of building static websites progressively. Just a `src` folder should be enough to build a static website.
 
 ## Install ##
 
@@ -66,11 +66,40 @@ Inside `index.ejs`:
 
 And that's all you need to do to include data into your website. Change any file's contents and reload the page in the browser, it gets re-compiled automatically.
 
+The data proxy is able to navigate into folders too.
+
+```
+MyWebsite/
+    data/
+        articles/
+            helloWorld.md
+```
+
+```html
+<article>
+    <%- data.articles.helloWorld.html %>
+</article>
+```
+
+Pitch understands many file formats inside it's data folder:
+
+ - **.json**: Gets `JSON.parse()`'d.
+ - **.js**: Gets `require()`'d.
+ - **.md**: Parsed with `remark`.
+
+If the file isn't any of these formats, will read it like a plain text file.
+
+## Router ##
+
+Documentation is on the way.
+
 ## Why ##
 
 Got really tired of configuring stuff to build a simple website that I need **right now** because _whatever_.
 
-Wanted something that isn't oriented to a certain type of website (like blogs) and gave me everything I needed, instead of requiring some extra build tasks to transpile something.
+Regular static site generators tie you to 'blogs' or websites with pages. Wanted something that isn't oriented to a certain type of website and gave me everything I needed, instead of requiring some extra build tasks to transpile something.
+
+Also, many of them require you to have a default configuration file, when a single `index.html` should be enough.
 
 Thought that gluing together a template system with some css pre-processing inside a CLI tool should do the trick. And it did.
 
