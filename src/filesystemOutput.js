@@ -10,7 +10,7 @@ function ensureFolderExists(folderPath) {
 }
 
 function filesystemOutput(distDir, runner) {
-    runner.isReady().then(() => {
+    return runner.isReady().then(() => {
         ensureFolderExists(distDir);
         var routes = runner.routes();
         routes.forEach(route => {

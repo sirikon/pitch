@@ -6,6 +6,8 @@ const frontmatter = require('remark-frontmatter');
 const html = require('remark-html');
 const highlight = require('remark-highlight.js');
 
+const debug = require('../debug');
+
 const markdownProcessor = unified()
     .use(markdown)
     .use(frontmatter, ['yaml'])
@@ -17,29 +19,53 @@ function fixHtmlEOL(string) {
     return string.replace(/\n/g, '\r\n');
 }
 
-function parseMarkdown(content) {
-    let meta = {};
+class MarkdownResult {
+    constructor(filePath) {
+        this.filePath = filePath;
 
-    const ast = markdownProcessor.runSync(markdownProcessor.parse(content));
-    
-    if (ast.children.length > 0 && ast.children[0].type === 'yaml') {
-        meta = yaml.safeLoad(ast.children[0].value);
+        this.internalContent = null;
+        this.ast = null;
     }
 
-    const html = fixHtmlEOL(markdownProcessor.stringify(ast).trim());
+    getContent() {
+        if (!this.internalContent) {
+            debug.track('read_file_markdown', this.filePath);
+            this.internalContent = fs.readFileSync(this.filePath, { encoding: 'utf8' });
+        }
+        return this.internalContent;
+    }
 
-    return { meta, html };
+    getAST() {
+        if (!this.ast) {
+            this.ast = markdownProcessor.runSync(markdownProcessor.parse(this.content));
+        }
+        return this.ast;
+    }
+
+    get meta() {
+        debug.track('request_markdown_meta', this.filePath);
+        const ast = this.getAST();
+        let meta = {};
+        if (ast.children.length > 0 && ast.children[0].type === 'yaml') {
+            meta = yaml.safeLoad(ast.children[0].value);
+        }
+        return meta;
+    }
+
+    get html() {
+        debug.track('request_markdown_html', this.filePath);
+        return fixHtmlEOL(markdownProcessor.stringify(this.getAST()).trim());
+    }
+
+    get content() {
+        debug.track('request_markdown_content', this.filePath);
+        return this.getContent();
+    }
 }
 
 module.exports = {
     fileExtension: '.md',
     read(filePath) {
-        const content = fs.readFileSync(filePath, { encoding: 'utf8' });
-        const document = parseMarkdown(content);
-        return {
-            text: content,
-            html: document.html,
-            meta: document.meta
-        };
+        return new MarkdownResult(filePath);
     }
 };

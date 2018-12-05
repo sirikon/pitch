@@ -8,8 +8,11 @@ const app = {
     commands: {
         build: {
             description: 'Builds the static page and outputs to dist folder.',
-            action: () => {
-                pitch.build();
+            flags: {
+                debug: { description: 'Will track important events in the build process and display a summary at the end.' }
+            },
+            action: (options) => {
+                pitch.build(options);
             }
         },
         serve: {

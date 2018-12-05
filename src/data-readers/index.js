@@ -1,7 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
+const debug = require('../debug');
+
 function getReaders() {
+    debug.track('read_directory_readers', __dirname);
     return fs.readdirSync(__dirname)
         .map((fileName) => {
             const filePath = path.join(__dirname, fileName);
@@ -12,6 +15,7 @@ function getReaders() {
 }
 
 function defaultReader (filePath) {
+    debug.track('read_file_plain', filePath);
     return fs.readFileSync(filePath, { encoding: 'utf8' });
 }
 

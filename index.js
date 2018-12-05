@@ -6,6 +6,8 @@ const { HttpOutput } = require('./src/httpOutput');
 const { customRouterProvider } = require('./src/customRouterProvider');
 const { Runner } = require('./src/runner');
 
+const debug = require('./src/debug');
+
 const version = require('./package.json').version;
 
 function buildRunner() {
@@ -13,8 +15,16 @@ function buildRunner() {
     return new Runner(filesystemInput, [sassProcessor, ejsProcessor], customRouterProvider);
 }
 
-function build() {
-    filesystemOutput('./dist', buildRunner());
+function build(options) {
+    if (options.debug) {
+        debug.enable();
+    }
+    filesystemOutput('./dist', buildRunner())
+        .then(() => {
+            if (options.debug) {
+                debug.display();
+            }
+        });
 }
 
 function serve(options) {

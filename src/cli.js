@@ -51,7 +51,7 @@ function printHelp(app) {
         if (command.flags) {
             Object.keys(command.flags).forEach((flagName) => {
                 var flag = command.flags[flagName];
-                console.log(`${leftSpacing}    ${c.blue.bold('--' + flagName)} - ${flag.description} ${c.grey('[' + flag.default + ']')}`);
+                console.log(`${leftSpacing}    ${c.blue.bold('--' + flagName)} - ${flag.description} ${flag.default !== undefined ? c.grey('[' + flag.default + ']') : ''}`);
             });
         }
     });
