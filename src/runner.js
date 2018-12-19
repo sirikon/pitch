@@ -148,12 +148,13 @@ Runner.prototype.router = function() {
         const customRouterResult = customRouter.custom(data);
         Object.keys(customRouterResult)
             .forEach(routePath => {
+                const normalizedRoutePath = path.normalize(routePath);
                 const file = path.normalize(customRouterResult[routePath].target);
                 const mapping = this.fileInputIndex[file];
                 if (!mapping) {
                     throw new Error(`The file ${file} couldn't be found. And it's required by custom route ${routePath} as target.`);
                 }
-                result[routePath] = {
+                result[normalizedRoutePath] = {
                     in: mapping.in,
                     process: mapping.process,
                     params: customRouterResult[routePath].params || {}
