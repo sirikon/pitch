@@ -9,13 +9,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="350mm"
-   height="121.191mm"
-   viewBox="0 0 350 121.191"
+   width="165.05mm"
+   height="34.354mm"
+   viewBox="0 0 165.05 34.354"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="logo.svg">
+   sodipodi:docname="logo-inkscape.svg">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -25,18 +25,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.52599005"
-     inkscape:cx="329.81155"
-     inkscape:cy="-4.3305237"
+     inkscape:zoom="1.4"
+     inkscape:cx="248.45686"
+     inkscape:cy="6.6344295"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1026"
-     inkscape:window-x="1920"
-     inkscape:window-y="421"
-     inkscape:window-maximized="1"
-     inkscape:snap-others="false" />
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -53,88 +52,19 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     style="display:inline"
-     transform="translate(0,-175.809)">
-    <flowRoot
+     transform="translate(0,-262.646)">
+    <text
        xml:space="preserve"
-       id="flowRoot3713"
-       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:40px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Ultra-Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       transform="scale(0.26458333)"><flowRegion
-         id="flowRegion3715"
-         style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Ultra-Bold'"><rect
-           id="rect3717"
-           width="499.01538"
-           height="274.76144"
-           x="115.15739"
-           y="375.00681"
-           style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Ultra-Bold'" /></flowRegion><flowPara
-         id="flowPara3719" /></flowRoot>    <flowRoot
-       xml:space="preserve"
-       id="flowRoot3721"
-       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:40px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Ultra-Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       transform="scale(0.26458333)"><flowRegion
-         id="flowRegion3723"
-         style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Ultra-Bold'"><rect
-           id="rect3725"
-           width="604.07123"
-           height="284.86301"
-           x="46.467018"
-           y="223.48392"
-           style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Ultra-Bold'" /></flowRegion><flowPara
-         id="flowPara3727" /></flowRoot>    <flowRoot
-       xml:space="preserve"
-       id="flowRoot3737"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       transform="scale(0.26458333)"><flowRegion
-         id="flowRegion3739"><rect
-           id="rect3741"
-           width="149.50258"
-           height="113.13708"
-           x="48.487324"
-           y="284.09308" /></flowRegion><flowPara
-         id="flowPara3743" /></flowRoot>    <rect
-       style="fill:#ffff00;stroke-width:0.5879066"
-       id="rect3745"
-       width="350"
-       height="121.19058"
-       x="0"
-       y="175.80942" />
-  </g>
-  <g
-     inkscape:groupmode="layer"
-     id="layer2"
-     inkscape:label="Layer 2"
-     transform="translate(0,-175.809)">
-    <g
-       aria-label="PITCH"
-       transform="matrix(2.7256965,0,0,2.7256965,-130.99669,-490.97981)"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#1a1a1a;fill-opacity:1;stroke:none"
-       id="flowRoot3729">
-      <path
-         d="m 76.335937,261.67634 q 0,4.78515 -2.832031,7.40234 -2.8125,2.59766 -8.007812,2.59766 h -2.167969 v 9.47265 h -7.714844 v -28.55468 h 9.882813 q 5.410156,0 8.125,2.36328 2.714843,2.36328 2.714843,6.71875 z m -13.007812,3.71093 h 1.40625 q 1.738281,0 2.753906,-0.97656 1.035156,-0.97656 1.035156,-2.69531 0,-2.89063 -3.203125,-2.89063 h -1.992187 z"
-         style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Ultra-Bold';fill:#1a1a1a"
-         id="path899"
-         inkscape:connector-curvature="0" />
-      <path
-         d="m 80.925781,281.14899 v -28.55468 h 7.753906 v 28.55468 z"
-         style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Ultra-Bold';fill:#1a1a1a"
-         id="path901"
-         inkscape:connector-curvature="0" />
-      <path
-         d="M 107.42969,281.14899 H 99.714844 V 258.9029 h -6.972657 v -6.30859 h 21.640623 v 6.30859 h -6.95312 z"
-         style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Ultra-Bold';fill:#1a1a1a"
-         id="path903"
-         inkscape:connector-curvature="0" />
-      <path
-         d="m 131.21875,258.51227 q -2.75391,0 -4.29687,2.26563 -1.54297,2.24609 -1.54297,6.21094 0,8.24218 6.26953,8.24218 1.89453,0 3.67187,-0.52734 1.77735,-0.52734 3.57422,-1.26953 v 6.52344 q -3.57422,1.58203 -8.08594,1.58203 -6.46484,0 -9.92187,-3.75 -3.4375,-3.75 -3.4375,-10.83985 0,-4.43359 1.66016,-7.79296 1.67968,-3.35938 4.80468,-5.15625 3.14453,-1.81641 7.38281,-1.81641 4.62891,0 8.84766,2.01172 l -2.36328,6.07422 q -1.58203,-0.74219 -3.16406,-1.25 -1.58203,-0.50782 -3.39844,-0.50782 z"
-         style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Ultra-Bold';fill:#1a1a1a"
-         id="path905"
-         inkscape:connector-curvature="0" />
-      <path
-         d="m 168.91406,281.14899 h -7.7539 v -11.64062 h -8.96485 v 11.64062 h -7.7539 v -28.55468 h 7.7539 v 10.58593 h 8.96485 v -10.58593 h 7.7539 z"
-         style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Ultra-Bold';fill:#1a1a1a"
-         id="path907"
-         inkscape:connector-curvature="0" />
-    </g>
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:192.8500061;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="-5.8291016"
+       y="296.45428"
+       id="text12"><tspan
+         sodipodi:role="line"
+         id="tspan10"
+         x="-5.8291016"
+         y="296.45428"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.79999924px;font-family:'Courier Prime Code';-inkscape-font-specification:'Courier Prime Code';stroke-width:0.26458332">Pitch<tspan
+   style="fill:#0a64a4;fill-opacity:1"
+   id="tspan4526">.</tspan></tspan></text>
   </g>
 </svg>
