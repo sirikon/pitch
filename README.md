@@ -14,7 +14,7 @@
 
 ⚠️ **Work in progress. API might change.** ⚠️
 
-The Progressive & Scriptable Static Site Generator.
+The Progressive & Scriptable [Static Site Generator](https://peterthaleikis.com/posts/introduction-to-static-site-generators).
 
 The objetive of pitch is to provide a powerful tool capable of building static websites progressively. Just a `src` folder should be enough to build a static website.
 
