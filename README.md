@@ -1,22 +1,31 @@
 <p align="center">
-    <img width="450" src="https://raw.githubusercontent.com/Sirikon/pitch/master/github-assets/logo.svg?sanitize=true" />
+    <img width="450" src="https://raw.githubusercontent.com/sirikon/pitch/master/github-assets/logo.svg?sanitize=true" />
 </p>
-
-# pitch #
-[![Pitch Version](https://img.shields.io/npm/v/pitch-cli.svg)](https://www.npmjs.com/package/pitch-cli) 
-[![Pitch Dependencies](https://david-dm.org/sirikon/pitch.svg)](https://david-dm.org/sirikon/pitch)
-[![Pitch License](https://img.shields.io/npm/l/pitch-cli.svg)](https://github.com/Sirikon/pitch/blob/master/LICENSE)
-
-
-| Linux | Windows |
-|-|-|
-|[![CircleCI](https://circleci.com/gh/Sirikon/pitch.svg?style=svg)](https://circleci.com/gh/Sirikon/pitch)|[![AppVeyor](https://ci.appveyor.com/api/projects/status/8lfm0qtq7pw34ol0?svg=true)](https://ci.appveyor.com/project/Sirikon/pitch)|
-
-⚠️ **Work in progress. API might change.** ⚠️
-
+<p align="center">
+    ⚠️ <b>Work in progress. API might change.</b> ⚠️
+</p>
+<p align="center">
+    <a title="Pitch Version" href="https://www.npmjs.com/package/pitch-cli">
+        <img src="https://img.shields.io/npm/v/pitch-cli.svg">
+    </a>
+    <a title="Pitch Dependencies" href="https://david-dm.org/sirikon/pitch">
+        <img src="https://david-dm.org/sirikon/pitch.svg">
+    </a>
+    <a title="Pitch License" href="https://github.com/sirikon/pitch/blob/master/LICENSE">
+        <img src="https://img.shields.io/npm/l/pitch-cli.svg">
+    </a>
+</p>
+<p align="center">
 The Progressive & Scriptable Static Site Generator.
 
 The objetive of pitch is to provide a powerful tool capable of building static websites progressively. Just a `src` folder should be enough to build a static website.
+</p>
+
+---
+
+| Linux | Windows |
+|-|-|
+|[![CircleCI](https://circleci.com/gh/sirikon/pitch.svg?style=svg)](https://circleci.com/gh/sirikon/pitch)|[![AppVeyor](https://ci.appveyor.com/api/projects/status/8lfm0qtq7pw34ol0?svg=true)](https://ci.appveyor.com/project/sirikon/pitch)|
 
 ## Install ##
 
@@ -102,29 +111,3 @@ Regular static site generators tie you to 'blogs' or websites with pages. Wanted
 Also, many of them require you to have a default configuration file, when a single `index.html` should be enough.
 
 Thought that gluing together a template system with some css pre-processing inside a CLI tool should do the trick. And it did.
-
-## License ##
-
-```
-MIT License
-
-Copyright (c) 2018 Carlos Fernández
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
