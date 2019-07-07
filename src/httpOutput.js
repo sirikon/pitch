@@ -10,7 +10,7 @@ function HttpOutput (options, runner) {
 }
 
 function getFilePathFromRequest(req) {
-    let file = req.url;
+    let file = req.url.split('?')[0];
     if (path.extname(file) === '') {
         file = path.join(file, 'index.html');
     }
