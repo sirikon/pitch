@@ -1,4 +1,4 @@
-const sass = require('node-sass');
+const sass = require('dart-sass');
 const { Readable } = require('stream');
 const print = require('../print');
 

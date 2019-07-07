@@ -24,7 +24,7 @@
     "dir-compare": "^1.4.0",
     "eslint": "^5.8.0",
     "mocha": "^5.0.4",
-    "nyc": "^13.1.0"
+    "nyc": "^14.1.1"
   },
   "bin": {
     "pitch": "bin/pitch.js"
@@ -32,10 +32,10 @@
   "dependencies": {
     "ansi-colors": "^3.2.1",
     "chokidar": "^2.0.4",
+    "dart-sass": "^1.22.3",
     "ejs": "^2.5.7",
-    "js-yaml": "^3.12.0",
+    "js-yaml": "^3.13.1",
     "mime-types": "^2.1.18",
-    "node-sass": "^4.9.4",
     "remark-frontmatter": "^1.3.1",
     "remark-highlight.js": "^5.0.0",
     "remark-html": "^9.0.0",

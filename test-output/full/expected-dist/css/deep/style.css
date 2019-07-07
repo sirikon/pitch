@@ -1,19 +1,24 @@
 body {
   background-color: whitesmoke;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
 
 b {
-  color: #fa4500; }
+  color: #fa4500;
+}
 
 h1 {
-  text-align: center; }
+  text-align: center;
+}
 
 .content {
   display: block;
   max-width: 900px;
   margin: auto;
-  padding: 10px; }
+  padding: 10px;
+}
 
 .box {
   padding: 1px 1em;
-  background-color: white; }
+  background-color: white;
+}
