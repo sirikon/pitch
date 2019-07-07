@@ -30,16 +30,16 @@
     "pitch": "bin/pitch.js"
   },
   "dependencies": {
-    "ansi-colors": "^3.2.1",
-    "chokidar": "^2.0.4",
+    "ansi-colors": "~4.1.1",
+    "chokidar": "~2.0.4",
     "dart-sass": "^1.22.3",
-    "ejs": "^2.5.7",
-    "js-yaml": "^3.13.1",
-    "mime-types": "^2.1.18",
-    "remark-frontmatter": "^1.3.1",
-    "remark-highlight.js": "^5.0.0",
-    "remark-html": "^9.0.0",
-    "remark-parse": "^6.0.3",
-    "unified": "^7.0.2"
+    "ejs": "~2.6.2",
+    "js-yaml": "~3.13.1",
+    "mime-types": "~2.1.24",
+    "remark-frontmatter": "~1.3.2",
+    "remark-highlight.js": "~5.1.1",
+    "remark-html": "~9.0.1",
+    "remark-parse": "~6.0.3",
+    "unified": "~8.0.1"
   }
 }
