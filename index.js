@@ -11,24 +11,24 @@ const debug = require('./src/debug');
 const version = require('./package.json').version;
 
 function buildRunner() {
-    const filesystemInput = new FilesystemInput('./src');
-    return new Runner(filesystemInput, [sassProcessor, ejsProcessor], customRouterProvider);
+	const filesystemInput = new FilesystemInput('./src');
+	return new Runner(filesystemInput, [sassProcessor, ejsProcessor], customRouterProvider);
 }
 
 function build(options) {
-    if (options.debug) {
-        debug.enable();
-    }
-    filesystemOutput('./dist', buildRunner())
-        .then(() => {
-            if (options.debug) {
-                debug.display();
-            }
-        });
+	if (options.debug) {
+		debug.enable();
+	}
+	filesystemOutput('./dist', buildRunner())
+		.then(() => {
+			if (options.debug) {
+				debug.display();
+			}
+		});
 }
 
 function serve(options) {
-    new HttpOutput(options, buildRunner()).run();
+	new HttpOutput(options, buildRunner()).run();
 }
 
 module.exports = { build, serve, version };
