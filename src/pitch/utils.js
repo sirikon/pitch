@@ -10,7 +10,7 @@ function recursiveMkdir(targetDir, { isRelativeToScript = false } = {}) {
 	const sep = path.sep;
 	const initDir = path.isAbsolute(targetDir) ? sep : '';
 	const baseDir = isRelativeToScript ? __dirname : '.';
-  
+
 	return targetDir.split(sep).reduce((parentDir, childDir) => {
 		const curDir = path.resolve(baseDir, parentDir, childDir);
 		try {
@@ -35,7 +35,7 @@ function recursiveMkdir(targetDir, { isRelativeToScript = false } = {}) {
 	}, initDir);
 }
 
-function requireUncached(modulePath){
+function requireUncached(modulePath) {
 	delete require.cache[require.resolve(modulePath)];
 	return require(modulePath);
 }
@@ -43,5 +43,5 @@ function requireUncached(modulePath){
 module.exports = {
 	filenameWithoutExtension,
 	recursiveMkdir,
-	requireUncached
+	requireUncached,
 };

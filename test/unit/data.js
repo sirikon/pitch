@@ -1,6 +1,6 @@
 const assert = require('assert');
 const path = require('path');
-const { init } = require('../src/data');
+const { init } = require('../../out/pitch/data');
 
 function pathToTestFolder(folderName) {
 	return path.join(__dirname, 'data-folders', folderName);

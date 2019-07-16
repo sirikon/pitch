@@ -9,13 +9,13 @@ function enable() {
 }
 
 function track(action, file) {
-	if (!enabled) return;
+	if (!enabled) { return; }
 	events.push({ action, file });
 }
 
 function display() {
 	end = Date.now();
-    
+
 	const runTime = (end - start) + 'ms';
 
 	console.log('Run time: ' + runTime);
@@ -28,7 +28,7 @@ function display() {
 			index[key] = {
 				action: event.action,
 				file: event.file,
-				count: 0
+				count: 0,
 			};
 		}
 		index[key].count++;
@@ -45,5 +45,5 @@ function display() {
 module.exports = {
 	enable,
 	track,
-	display
+	display,
 };

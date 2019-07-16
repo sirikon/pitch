@@ -1,19 +1,21 @@
 #!/usr/bin/env node
-const cli = require('../src/cli');
-const pitch = require('../index');
+import * as cli from '../pitch/cli/cli';
+import { IApp } from '../pitch/cli/models';
+import { printHelp } from '../pitch/cli/print';
+import * as pitch from '../pitch/index';
 
-const app = {
+const app: IApp = {
 	name: 'pitch',
 	version: pitch.version,
 	commands: {
 		build: {
 			description: 'Builds the static page and outputs to dist folder.',
 			flags: {
-				debug: { description: 'Will track important events in the build process and display a summary at the end.' }
+				debug: { description: 'Will track important events in the build process and display a summary at the end.' },
 			},
 			action: (options) => {
 				pitch.build(options);
-			}
+			},
 		},
 		serve: {
 			description: 'Serves the static page for development with live transpilation.',
@@ -23,18 +25,21 @@ const app = {
 			},
 			action: (options) => {
 				pitch.serve(options);
-			}
+			},
 		},
 		version: {
 			description: 'Displays the version.',
 			action: () => {
 				console.log(pitch.version);
-			}
+			},
 		},
 		help: {
-			description: 'Shows this helpful output.'
-		}
-	}
+			description: 'Shows this helpful output.',
+			action: () => {
+				printHelp(app);
+			},
+		},
+	},
 };
 
 cli.run(app);

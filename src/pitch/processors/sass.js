@@ -13,11 +13,11 @@ module.exports = {
 		outputExtension: 'css',
 		process({ absolutePath }) {
 			var stream = new Readable();
-			stream._read = function () {};
+			stream._read = function() {};
 
 			sass.render({
 				file: absolutePath,
-				linefeed: eolName
+				linefeed: eolName,
 			}, (err, result) => {
 				if (err) {
 					print.error(err.formatted);
@@ -27,8 +27,8 @@ module.exports = {
 				stream.push(result.css);
 				stream.push(null);
 			});
-            
+
 			return stream;
-		}
-	}
+		},
+	},
 };

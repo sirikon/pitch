@@ -13,7 +13,7 @@ function createDataProxy(dataPath, dataBaseDir) {
 	}
 	let baseObject = {
 		[DATA_PATH_SYMBOL]: dataPath,
-		[DATA_BASE_DIR_SYMBOL]: dataBaseDir
+		[DATA_BASE_DIR_SYMBOL]: dataBaseDir,
 	};
 	return new Proxy(baseObject, {
 		has: () => true,
@@ -50,7 +50,7 @@ function createDataProxy(dataPath, dataBaseDir) {
 				return readContent(matchingFile, receiver);
 			}
 			return target[propName];
-		}
+		},
 	});
 }
 
@@ -60,7 +60,7 @@ const fileIsDirectory = (filePath) =>
 	fs.existsSync(filePath) &&
     fs.statSync(filePath).isDirectory();
 
-function getDirectoryFilesNames (directoryPath) {
+function getDirectoryFilesNames(directoryPath) {
 	return getDirectoryFiles(directoryPath)
 		.map((fileName) => {
 			var dotIndex = fileName.lastIndexOf('.');
@@ -77,7 +77,7 @@ function getDirectoryFilesNames (directoryPath) {
 function getMatchingFileInDirectory(name, directory) {
 	var matchingFiles = getDirectoryFiles(directory)
 		.filter(f => filenameWithoutExtension(f) === name);
-    
+
 	if (matchingFiles.length > 0) {
 		const firstFile = matchingFiles[0];
 		return path.join(directory, firstFile);

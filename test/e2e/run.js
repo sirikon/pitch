@@ -5,7 +5,7 @@ const dirCompare = require('dir-compare');
 const { spawnSync } = require('child_process');
 
 const currentDirectory = __dirname;
-const pitchBinaryPath = path.join(currentDirectory, '../bin/pitch.js');
+const pitchBinaryPath = path.join(currentDirectory, '../../out/bin/pitch.js');
 
 function getFolders() {
 	return fs.readdirSync(currentDirectory)

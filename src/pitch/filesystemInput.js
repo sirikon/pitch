@@ -3,7 +3,7 @@ const path = require('path');
 const EventEmitter = require('events');
 const chokidar = require('chokidar');
 
-function FilesystemInput (srcDir) {
+function FilesystemInput(srcDir) {
 	this.srcDir = path.resolve(srcDir);
 	this.events = new EventEmitter();
 	this.watcher = null;
@@ -28,7 +28,7 @@ FilesystemInput.prototype.startWatch = function() {
 	this.watcher
 		.on('all', (event, rawPath) => {
 			const filePath = path.relative(this.srcDir, rawPath);
-			switch(event) {
+			switch (event) {
 			case 'add': this.events.emit('add', [filePath]); break;
 			case 'unlink': this.events.emit('remove', [filePath]); break;
 			}
@@ -41,7 +41,7 @@ FilesystemInput.prototype.startWatch = function() {
 FilesystemInput.prototype.read = function(file) {
 	return {
 		absolutePath: path.resolve(path.join(this.srcDir, file)),
-		readStream: fs.createReadStream(path.join(this.srcDir, file))
+		readStream: fs.createReadStream(path.join(this.srcDir, file)),
 	};
 };
 

@@ -15,7 +15,7 @@ const markdownProcessor = unified()
 	.use(html);
 
 function fixHtmlEOL(string) {
-	if (process.platform !== 'win32') return string;
+	if (process.platform !== 'win32') { return string; }
 	return string.replace(/\n/g, '\r\n');
 }
 
@@ -67,5 +67,5 @@ module.exports = {
 	fileExtension: '.md',
 	read(filePath) {
 		return new MarkdownResult(filePath);
-	}
+	},
 };

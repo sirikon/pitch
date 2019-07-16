@@ -2,33 +2,34 @@
   "name": "pitch-cli",
   "version": "0.9.0",
   "description": "Zero-Configuration Convention-Driven Progressive Static Site Generator.",
-  "main": "index.js",
+  "homepage": "https://github.com/sirikon/pitch#readme",
+  "bin": {
+    "pitch": "out/bin/pitch.js"
+  },
   "scripts": {
-    "test": "npm run test-unit && npm run test-output",
-    "test-output": "cd test-output && node ./run.js",
-    "test-unit": "nyc mocha && nyc report --reporter=html",
-    "lint": "eslint .",
+    "build": "cd src && tsc",
+    "test": "npm run build && npm run test:unit && npm run test:e2e",
+    "test:e2e": "cd test/e2e && node ./run.js",
+    "test:unit": "cd test/unit && nyc mocha . && nyc report --reporter=html",
+    "lint": "cd src && tslint -p .",
     "lint:fix": "npm run lint -- --fix"
   },
+  "author": "Carlos Fdez. Llamas <hello@sirikon.me>",
+  "license": "GPL-3.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sirikon/pitch.git"
+    "url": "git+https://github.com/sirikon/pitch.git"
   },
-  "author": "",
-  "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/Sirikon/pitch/issues"
+    "url": "https://github.com/sirikon/pitch/issues"
   },
-  "homepage": "https://github.com/Sirikon/pitch#readme",
   "devDependencies": {
     "diff": "~4.0.1",
     "dir-compare": "~1.7.2",
-    "eslint": "~6.0.1",
     "mocha": "~6.1.4",
-    "nyc": "~14.1.1"
-  },
-  "bin": {
-    "pitch": "bin/pitch.js"
+    "tslint": "~5.18.0",
+    "nyc": "~14.1.1",
+    "typescript": "^3.5.3"
   },
   "dependencies": {
     "ansi-colors": "~4.1.1",

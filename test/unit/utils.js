@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { filenameWithoutExtension } = require('../src/utils');
+const { filenameWithoutExtension } = require('../../out/pitch/utils');
 
 describe('Utils', function() {
 	describe('filenameWithoutExtension()', function() {

@@ -8,5 +8,5 @@ module.exports = {
 		debug.track('read_file_json', filePath);
 		const content = fs.readFileSync(filePath, { encoding: 'utf8' });
 		return JSON.parse(content);
-	}
+	},
 };

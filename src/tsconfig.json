@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "target": "es2018",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "allowJs": true,
+
+        "noImplicitAny": true,
+
+        "removeComments": true,
+        "preserveConstEnums": true,
+
+        "outDir": "../out",
+        "rootDir": "./"
+    }
+}

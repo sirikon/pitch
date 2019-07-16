@@ -4,7 +4,7 @@ const fs = require('fs');
 const utils = require('./utils');
 
 function ensureFolderExists(folderPath) {
-	if (!fs.existsSync(folderPath)){
+	if (!fs.existsSync(folderPath)) {
 		utils.recursiveMkdir(folderPath);
 	}
 }

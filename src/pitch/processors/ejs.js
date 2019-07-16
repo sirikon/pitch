@@ -11,7 +11,7 @@ module.exports = {
 		outputExtension: 'html',
 		process({ absolutePath, data, params }) {
 			var stream = new Readable();
-			stream._read = function () {};
+			stream._read = function() {};
 
 			ejs.renderFile(absolutePath, { data, params }, (err, result) => {
 				if (err) {
@@ -24,6 +24,6 @@ module.exports = {
 			});
 
 			return stream;
-		}
-	}
+		},
+	},
 };

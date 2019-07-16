@@ -8,5 +8,5 @@ module.exports = {
 	read(filePath, parentData) {
 		debug.track('require_js', filePath);
 		return requireUncached(path.resolve(filePath)).data(parentData);
-	}
+	},
 };

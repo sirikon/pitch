@@ -4,7 +4,7 @@ const path = require('path');
 const c = require('ansi-colors');
 const mimeTypes = require('mime-types');
 
-function HttpOutput (options, runner) {
+function HttpOutput(options, runner) {
 	this.options = options;
 	this.runner = runner;
 }
@@ -77,7 +77,7 @@ HttpOutput.prototype.run = function() {
 			handleError(res, err, filePath);
 		}
 	});
-    
+
 	server.listen(this.options.port, this.options.host, () => {
 		console.log(`${c.bold('pitch')} ${c.bold.cyan('server')} running.`);
 		console.log(`http://${c.bold.blue(this.options.host)}:${c.bold.blue(this.options.port)}/`);

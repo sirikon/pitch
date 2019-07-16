@@ -1,5 +1,5 @@
 const assert = require('assert');
-const cli = require('../src/cli');
+const cli = require('../../out/pitch/cli');
 
 describe('CLI', function() {
 	describe('parseArgs()', function() {

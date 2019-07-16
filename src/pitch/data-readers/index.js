@@ -8,13 +8,13 @@ function getReaders() {
 	return fs.readdirSync(__dirname)
 		.map((fileName) => {
 			const filePath = path.join(__dirname, fileName);
-			if (filePath === __filename) return null;
+			if (filePath === __filename) { return null; }
 			return require(filePath);
 		})
 		.filter(reader => reader !== null);
 }
 
-function defaultReader (filePath) {
+function defaultReader(filePath) {
 	debug.track('read_file_plain', filePath);
 	return fs.readFileSync(filePath, { encoding: 'utf8' });
 }
@@ -22,7 +22,7 @@ function defaultReader (filePath) {
 const readers = getReaders();
 
 module.exports = {
-	read (filePath, parentData) {
+	read(filePath, parentData) {
 		const fileExtension = path.extname(filePath);
 
 		const matchingReaders = readers
@@ -33,5 +33,5 @@ module.exports = {
 		}
 
 		return defaultReader(filePath);
-	}
+	},
 };

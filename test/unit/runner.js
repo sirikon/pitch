@@ -1,6 +1,6 @@
 const assert = require('assert');
 const EventEmitter = require('events');
-const { Runner } = require('../src/runner');
+const { Runner } = require('../../out/pitch/runner');
 
 const processors = [
 	{

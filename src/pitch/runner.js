@@ -4,7 +4,7 @@ const { init } = require('./data');
 const data = init('./data');
 
 function validateFiles(files) {
-	if (files === null || files === undefined) throw new Error('No file list provided');
+	if (files === null || files === undefined) { throw new Error('No file list provided'); }
 }
 
 function setFileExtension(file, extension) {
@@ -48,12 +48,12 @@ Runner.prototype.add = function(files) {
 	files.forEach((file) => {
 		var mapping = {
 			in: file,
-			process: null
+			process: null,
 		};
 
 		var i = 0;
 		var found = false;
-		while(i < this.processors.length && !found) {
+		while (i < this.processors.length && !found) {
 			var processor = this.processors[i];
 			if (processor.test(file)) {
 				mapping.process = processor.name;
@@ -61,7 +61,7 @@ Runner.prototype.add = function(files) {
 			}
 			i++;
 		}
-        
+
 		this.fileInputIndex[mapping.in] = mapping;
 	});
 };
@@ -157,7 +157,7 @@ Runner.prototype.router = function() {
 				result[normalizedRoutePath] = {
 					in: mapping.in,
 					process: mapping.process,
-					params: customRouterResult[routePath].params || {}
+					params: customRouterResult[routePath].params || {},
 				};
 			});
 	}
