@@ -29,7 +29,8 @@
     "mocha": "~6.1.4",
     "tslint": "~5.18.0",
     "nyc": "~14.1.1",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "@types/ejs": "~2.5.1"
   },
   "dependencies": {
     "ansi-colors": "~4.1.1",
