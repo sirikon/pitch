@@ -7,7 +7,7 @@ function getArgs(): string[] {
 
 export function parseArgs(args: string[]): ICommand {
 	const result: ICommand = {
-		name: 'help',
+		command: 'help',
 		flags: {},
 	};
 
@@ -31,7 +31,7 @@ export function parseArgs(args: string[]): ICommand {
 		}
 
 		if (lastFlag === null) {
-			result.name = arg;
+			result.command = arg;
 			return;
 		}
 
@@ -48,7 +48,7 @@ export function executeAppWithArguments(app: IApp, command: ICommand) {
 	}
 
 	const flags: IFlags = {};
-	const commandDef = app.commands[command.name];
+	const commandDef = app.commands[command.command];
 	const definedFlags = commandDef.flags || {};
 
 	Object.keys(definedFlags).forEach((key) => {
@@ -60,7 +60,7 @@ export function executeAppWithArguments(app: IApp, command: ICommand) {
 
 function commandExists(app: IApp, command: ICommand): boolean {
 	const availableCommands = Object.keys(app.commands);
-	return availableCommands.indexOf(command.name) === -1;
+	return availableCommands.indexOf(command.command) === -1;
 }
 
 export function run(app: IApp) {

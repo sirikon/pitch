@@ -17,6 +17,6 @@ export interface IFlagDefinition {
 
 export interface IFlags { [key: string]: string | boolean; }
 export interface ICommand {
-	name: string;
+	command: string;
 	flags: IFlags;
 }

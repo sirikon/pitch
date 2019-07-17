@@ -1,21 +1,21 @@
-const c = require('ansi-colors');
+import * as c from 'ansi-colors';
 
-function pad(length, char) {
+function pad(length: number, char: string) {
 	const result = [];
-	for (var i = 0; i < length; i++) {
+	for (let i = 0; i < length; i++) {
 		result.push(char);
 	}
 	return result.join('');
 }
 
-const space = (length) => pad(length, ' ');
-const hLine = (length) => pad(length, '─');
+const space = (length: number) => pad(length, ' ');
+const hLine = (length: number) => pad(length, '─');
 
-function getTextWidth(text) {
+function getTextWidth(text: string) {
 	let maxWidth = 0;
 	const lines = text.split('\n');
-	for (var i = 0; i < lines.length; i++) {
-		const length = lines[i].length;
+	for (const line of lines) {
+		const length = line.length;
 		if (length > maxWidth) {
 			maxWidth = length;
 		}
@@ -23,23 +23,18 @@ function getTextWidth(text) {
 	return maxWidth;
 }
 
-function trimText(text) {
+function trimText(text: string) {
 	return text.trim();
 }
 
-function error(text) {
+export function error(text: string) {
 	const trimmedText = trimText(text);
 	const lines = trimmedText.split('\n');
 	const textWidth = getTextWidth(trimmedText);
 
 	console.log(`${c.redBright('┌')}${c.redBright(hLine(textWidth + 2))}${c.redBright('┐')}`);
-	for (var i = 0; i < lines.length; i++) {
-		const line = lines[i];
+	for (const line of lines) {
 		console.log(`${c.redBright('│')} ${line}${space(textWidth - line.length)} ${c.redBright('│')}`);
 	}
 	console.log(`${c.redBright('└')}${c.redBright(hLine(textWidth + 2))}${c.redBright('┘')}`);
 }
-
-module.exports = {
-	error,
-};

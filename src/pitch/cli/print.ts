@@ -21,7 +21,7 @@ export function printHelp(app: IApp) {
 }
 
 export function printCommandDoesNotExist(command: ICommand) {
-	console.log(`Command '${command.name}' doesn't exist.`);
+	console.log(`Command '${command.command}' doesn't exist.`);
 	console.log(`Run \`${c.bold('pitch')} ${c.bold.cyan('help')}\` for more info.`);
 }
 

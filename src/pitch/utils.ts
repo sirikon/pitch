@@ -1,12 +1,12 @@
-const path = require('path');
-const fs = require('fs');
+import * as fs from 'fs';
+import * as path from 'path';
 
-function filenameWithoutExtension(fileName) {
-	var extension = path.extname(fileName);
+export function filenameWithoutExtension(fileName: string) {
+	const extension = path.extname(fileName);
 	return fileName.substr(0, fileName.length - extension.length);
 }
 
-function recursiveMkdir(targetDir, { isRelativeToScript = false } = {}) {
+export function recursiveMkdir(targetDir: string, { isRelativeToScript = false } = {}) {
 	const sep = path.sep;
 	const initDir = path.isAbsolute(targetDir) ? sep : '';
 	const baseDir = isRelativeToScript ? __dirname : '.';
@@ -35,13 +35,7 @@ function recursiveMkdir(targetDir, { isRelativeToScript = false } = {}) {
 	}, initDir);
 }
 
-function requireUncached(modulePath) {
+export function requireUncached(modulePath: string) {
 	delete require.cache[require.resolve(modulePath)];
 	return require(modulePath);
 }
-
-module.exports = {
-	filenameWithoutExtension,
-	recursiveMkdir,
-	requireUncached,
-};
