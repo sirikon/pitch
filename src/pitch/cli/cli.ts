@@ -60,7 +60,7 @@ export function executeAppWithArguments(app: IApp, command: ICommand) {
 
 function commandExists(app: IApp, command: ICommand): boolean {
 	const availableCommands = Object.keys(app.commands);
-	return availableCommands.indexOf(command.command) === -1;
+	return availableCommands.indexOf(command.command) >= 0;
 }
 
 export function run(app: IApp) {

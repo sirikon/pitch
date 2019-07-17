@@ -36,8 +36,8 @@ export class FilesystemInput implements IInput {
 
 	public read(filePath: string) {
 		return {
-			absolutePath: path.resolve(path.join(this.srcDir, '')),
-			readStream: fs.createReadStream(path.join(this.srcDir, '')),
+			absolutePath: path.resolve(path.join(this.srcDir, filePath)),
+			readStream: fs.createReadStream(path.join(this.srcDir, filePath)),
 		};
 	}
 }
