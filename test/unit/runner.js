@@ -109,12 +109,12 @@ describe('Runner', function() {
 		});
 	});
 	describe('Routing', function() {
-		it('should have a method called "routes" which returns the current mapped routes.', function() {
+		it('should have a method called "getRoutes" which returns the current mapped routes.', function() {
 			var input = createInputMock();
 			var runner = new Runner(input, processors);
 			input.events.emit('add', ['index.ejs', 'about.html', 'style.scss']);
 
-			assert.deepEqual(runner.routes(), [
+			assert.deepEqual(runner.getRoutes(), [
 				'index.html', 'about.html', 'style.css'
 			]);
 		});

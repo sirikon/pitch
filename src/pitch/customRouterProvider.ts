@@ -1,8 +1,8 @@
-const fs = require('fs');
-const path = require('path');
-const { requireUncached } = require('./utils');
+import * as fs from 'fs';
+import * as path from 'path';
+import { requireUncached } from './utils';
 
-function customRouterProvider() {
+export function customRouterProvider() {
 	const routerPath = path.resolve(path.join(process.cwd(), 'router.js'));
 	const fileExists = fs.existsSync(routerPath);
 	if (fileExists) {
@@ -10,5 +10,3 @@ function customRouterProvider() {
 	}
 	return null;
 }
-
-module.exports = { customRouterProvider };

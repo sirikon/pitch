@@ -1,7 +1,7 @@
 import * as path from 'path';
 
 import { init } from './data';
-import { IProcessor } from './models';
+import { IInput, IProcessor } from './models';
 const data = init('./data');
 
 function validateFiles(files: any) {
@@ -20,7 +20,7 @@ export class Runner {
 	private fileInputIndex: { [key: string]: any } = {};
 
 	constructor(
-		private input: any,
+		private input: IInput,
 		private processors: IProcessor[] = [],
 		private customRouterProvider: () => any = (() => null)) {
 			this.generateProcessorsIndex();
@@ -29,6 +29,30 @@ export class Runner {
 
 			this.input.run();
 		}
+
+	public isReady() {
+		return this.readyPromise;
+	}
+
+	public getRoutes() {
+		return Object.keys(this.router());
+	}
+
+	public process(route: any): any {
+		const mapping = this.route(route);
+		const file = this.input.read(mapping.in);
+		const processor = this.processorsIndex[mapping.process];
+		if (!processor) { return file.readStream; }
+		return processor.process({
+			absolutePath: file.absolutePath,
+			params: mapping.params,
+			data,
+		});
+	}
+
+	public stop() {
+		this.input.stop();
+	}
 
 	private generateProcessorsIndex() {
 		this.processors.forEach((processor) => {
@@ -78,19 +102,6 @@ export class Runner {
 		files.forEach((file: any) => {
 			delete this.fileInputIndex[file];
 		});
-	}
-
-	private process(route: any): any {
-		const mapping = this.route(route);
-		const file = this.input.read(mapping.in);
-		file.data = data;
-		file.params = mapping.params;
-		const processor = this.processorsIndex[mapping.process];
-		if (processor) {
-			return processor.process(file);
-		} else {
-			return file.readStream;
-		}
 	}
 
 	private isAutoRoutingEnabled(): boolean {
@@ -150,20 +161,8 @@ export class Runner {
 		return result;
 	}
 
-	private isReady() {
-		return this.readyPromise;
-	}
-
-	private stop() {
-		this.input.stop();
-	}
-
 	private route(route: string) {
 		return this.router()[route];
-	}
-
-	private routes() {
-		return Object.keys(this.router());
 	}
 
 	private routeExists(route: any) {
