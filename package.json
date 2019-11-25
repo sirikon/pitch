@@ -33,7 +33,7 @@
   "dependencies": {
     "ansi-colors": "~4.1.1",
     "chokidar": "~3.0.2",
-    "dart-sass": "^1.22.3",
+    "sass": "^1.22.3",
     "ejs": "~2.6.2",
     "js-yaml": "~3.13.1",
     "mime-types": "~2.1.24",
